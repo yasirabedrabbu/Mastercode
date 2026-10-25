@@ -2,7 +2,7 @@ export const cta = {
   title: "Have a Project in mind?",
   subtitle:
     "Good products start with a conversation. If you've got one in mind, Yasir's ready to help shape it.",
-  action: { label: "Start a Project", href: "mailto:hello@yasirabedrabbu.com" },
+  action: { label: "Start a Project", href: "mailto:yasirabedrabbu@gmail.com" },
   avatar: { src: "/images/cta-avatar.png", alt: "Yasir Abed Rabbu" },
 };
 
@@ -17,9 +17,6 @@ export const socialLinks: SocialLink[] = [
 ];
 
 export const footer = {
-  copyright: "© 2026 Yasir Abed Rabbu · All rights reserved.",
-  links: [
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms of Use", href: "#" },
-  ],
+  copyright: `© ${new Date().getFullYear()} Yasir Abed Rabbu · All rights reserved.`,
+  links: [] as { label: string; href: string }[],
 };

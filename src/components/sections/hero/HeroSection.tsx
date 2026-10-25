@@ -22,7 +22,7 @@ export default function HeroSection() {
     <>
       {/* Title + CTA — unchanged */}
       <div id="home" className="w-full bg-white">
-        <div className="flex flex-col items-center px-5 pt-[60px] sm:px-10 lg:px-[300px]">
+        <div className="flex flex-col items-center px-5 pt-[60px] sm:px-10">
           <HeroTitle />
           <div className="mt-12 gap-y-[48px]">
             <Button href={hero.cta.href}>{hero.cta.label}</Button>

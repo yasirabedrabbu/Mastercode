@@ -10,7 +10,7 @@ export default function SocialCell({ link }: { link: SocialLink }) {
         href={link.href}
         target="_blank"
         rel="noreferrer"
-        className="group flex h-full w-full items-center justify-center bg-surface-alt transition-colors duration-300 hover:bg-cta"
+        className="group flex h-full w-full items-center justify-center bg-surface transition-colors duration-300 hover:bg-cta"
       >
         <Image
           src={link.icon}

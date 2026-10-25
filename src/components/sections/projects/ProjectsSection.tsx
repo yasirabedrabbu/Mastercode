@@ -20,7 +20,10 @@ export default function ProjectsSection() {
   };
 
   return (
-    <section className="w-full bg-[#3B0C12] px-5 md:px-[300px] py-8 md:py-24 flex flex-col items-center gap-12">
+    <section
+  id="projects"
+  className="w-full bg-bg-deep px-5 py-8 sm:px-8 md:py-24 lg:px-10 flex flex-col items-center gap-12"
+>
       <div className="flex flex-col items-center gap-4 text-center">
         <h2 className="text-white font-display font-bold text-[32px] md:text-[64px] leading-[32px] md:leading-[64px] capitalize max-w-[780px]">
           {projectsHeader.title}
