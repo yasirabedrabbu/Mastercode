@@ -12,10 +12,8 @@ export const manrope = Manrope({
 export const cabinet = localFont({
   src: "../../public/fonts/CabinetGrotesk-Variable.woff2",
   weight: "100 800",
-  variable: "--font-cabinet",
+  variable: "--font-cabinet-grotesk", // ← age chilo "--font-cabinet"
   display: "swap",
-  // Closer x-height/width match than default system-ui reduces the
-  // visible reflow when Cabinet swaps in on the 92px hero title.
   fallback: ["Georgia", "serif"],
 });
 
