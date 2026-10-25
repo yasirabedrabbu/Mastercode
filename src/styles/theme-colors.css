@@ -1,40 +1,40 @@
-/* Tailwind v4 color tokens — mapped 1:1 from the Figma variables export. */
+/* Tailwind v4 color tokens — Burgundy / Charcoal / Gold / Cream palette. */
 @theme {
   /* ---- Brand ---- */
-  --color-brand: #5c0a1a;         /* brand/primary-default */
-  --color-brand-hover: #480818;   /* brand/primary-hover   */
-  --color-brand-active: #380610;  /* brand/primary-active  */
-  --color-accent: #7a1020;        /* brand/accent-default  */
-  --color-cta: #8c1c2a;           /* brand/cta-default     */
-  --color-cta-hover: #701520;     /* brand/cta-hover       */
+  --color-brand: #6b1a2b;         /* Primary — Burgundy */
+  --color-brand-hover: #571524;
+  --color-brand-active: #43101c;
+  --color-accent: #c9a24b;        /* Accent — Gold (use on dark surfaces / decoration) */
+  --color-accent-hover: #b48d38;
+  --color-cta: #7d2335;
+  --color-cta-hover: #571524;
 
   /* ---- Backgrounds ---- */
-  --color-bg: #faf4f0;            /* background/default        */
-  --color-bg-white: #ffffff;      /* header + hero             */
-  --color-bg-deep: #3b0c12;       /* dark maroon full sections */
-  --color-bg-slate: #1a1a1a;      /* project caption blocks    */
+  --color-bg: #f6efe6;            /* Cream */
+  --color-bg-white: #fffbf6;
+  --color-bg-deep: #1f1f24;       /* Secondary — Charcoal */
+  --color-bg-slate: #1f1f24;
 
   /* ---- Surfaces ---- */
-  --color-surface: #f2e8e2;       /* surface/default — inactive service rows */
-  --color-surface-hover: #ede0d8; /* surface/hover                          */
+  --color-surface: #ece2d4;
+  --color-surface-hover: #e4d8c7;
 
   /* ---- Text ---- */
-  --color-ink: #1a0608;           /* text/primary   */
-  --color-ink-soft: #4a2e28;      /* text/secondary */
-  --color-ink-muted: #8a6a62;     /* text/muted     */
-  --color-ink-faint: #b8a098;     /* text/disabled  */
-  --color-on-brand: #f5ede8;      /* text/onPrimary */
-  --color-on-cta: #ffffff;        /* text/onCta     */
+  --color-ink: #1f1f24;           /* Charcoal */
+  --color-ink-soft: #4a4650;
+  --color-ink-muted: #6b6670;
+  --color-ink-faint: #a9a3a8;
+  --color-on-brand: #f6efe6;      /* Cream on dark */
+  --color-on-cta: #ffffff;
 
-  /* ---- Borders (solid) ---- */
-  --color-line: #e8d8d0;          /* border/subtle */
-  --color-line-strong: #b89088;   /* border/strong */
+  /* ---- Borders ---- */
+  --color-line: #e2d6c6;
+  --color-line-strong: #b9a58a;
 
-  /* ---- Borders (hairlines / translucent) ---- */
-  --color-hair: rgb(72 8 24 / 0.2);        /* header rule            */
-  --color-hair-light: rgb(253 250 245 / 0.12); /* rules on dark bg   */
-  --color-hair-warm: rgb(237 224 216 / 0.5);   /* stat dividers      */
-  --color-hair-dark: rgb(20 20 20 / 0.3);      /* faq row dividers   */
-  --color-hair-card: rgb(232 216 208 / 0.2);   /* dark card outline  */
-  --color-hair-logo: rgb(92 16 32 / 0.5);      /* social logo boxes  */
+  --color-hair: rgb(107 26 43 / 0.2);
+  --color-hair-light: rgb(246 239 230 / 0.14);
+  --color-hair-warm: rgb(226 214 198 / 0.5);
+  --color-hair-dark: rgb(31 31 36 / 0.3);
+  --color-hair-card: rgb(226 214 198 / 0.2);
+  --color-hair-logo: rgb(107 26 43 / 0.5);
 }

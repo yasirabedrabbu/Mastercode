@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
-import SideNav from "@/components/layout/SideNav";
 import SmoothScroll from "@/components/layout/SmoothScroll";
-import Footer from "@/components/layout/Footer";
-import Preloader from "@/components/layout/Preloader";
 import { fontVariables } from "@/lib/fonts";
 
-const title = "Yasir Abed Rabbu — User-centric Product Designer";
+const title = "Yasir Abed Rabbu — UI/UX Designer";
 const description =
-  "Product designer based in Dhaka, Bangladesh. Clear, friction-free products across SaaS, healthcare and fintech, built around real user needs.";
+  "UI/UX designer in Dhaka, Bangladesh, turning complex SaaS, healthcare and fintech workflows into simple, trustworthy experiences.";
 
 export const metadata: Metadata = {
   title,
@@ -46,8 +43,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             src="https://ct.pinterest.com/v3/?event=init&tid=2612696855405&noscript=1"
           />
         </noscript>
-        <Preloader />
-        <SideNav />
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>

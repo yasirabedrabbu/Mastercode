@@ -71,3 +71,4 @@
     scroll-behavior: auto;
   }
 }
+@keyframes marquee { to { transform: translateX(-50%); } }
