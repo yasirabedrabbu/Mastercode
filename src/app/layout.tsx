@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   description,
   openGraph: { title, description, type: "website" },
   twitter: { card: "summary_large_image", title, description },
+  other: {
+    "p:domain_verify": "c9cdc70ae2430835bf5e8a7d19174ed9",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
