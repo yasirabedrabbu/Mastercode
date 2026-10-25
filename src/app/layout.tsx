@@ -5,6 +5,7 @@ import SideNav from "@/components/layout/SideNav";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import Footer from "@/components/layout/Footer";
 import Preloader from "@/components/layout/Preloader";
+import { fontVariables } from "@/lib/fonts";
 
 const title = "Yasir Abed Rabbu — User-centric Product Designer";
 const description =
