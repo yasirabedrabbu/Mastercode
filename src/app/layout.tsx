@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import SideNav from "@/components/layout/SideNav";
 import SmoothScroll from "@/components/layout/SmoothScroll";
@@ -20,13 +21,34 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-return (
-  <html>
-    <body suppressHydrationWarning>
-      <Preloader />
-      <SideNav />
-      <SmoothScroll>{children}</SmoothScroll>
-    </body>
-  </html>
-);
+  return (
+    <html lang="en">
+      <body suppressHydrationWarning>
+        <Script id="pinterest-tag" strategy="afterInteractive">
+          {`
+            !function(e){if(!window.pintrk){window.pintrk=function(){
+            window.pintrk.queue.push(Array.prototype.slice.call(arguments))};var
+            n=window.pintrk;n.queue=[],n.version="3.0";var
+            t=document.createElement("script");t.async=!0,t.src=e;var
+            r=document.getElementsByTagName("script")[0];
+            r.parentNode.insertBefore(t,r)}}("https://s.pinimg.com/ct/core.js");
+            pintrk('load','2612696855405');
+            pintrk('page');
+          `}
+        </Script>
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            alt=""
+            src="https://ct.pinterest.com/v3/?event=init&tid=2612696855405&noscript=1"
+          />
+        </noscript>
+        <Preloader />
+        <SideNav />
+        <SmoothScroll>{children}</SmoothScroll>
+      </body>
+    </html>
+  );
 }
