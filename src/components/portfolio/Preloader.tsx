@@ -55,14 +55,14 @@ export default function Preloader() {
       });
 
       /* The whole sequence is ~1s, so the curtain never holds the page hostage. */
-      tl.from(".pre-enter", { yPercent: 55, autoAlpha: 0, duration: 0.35, ease: "power3.out", stagger: 0.05 })
-        .from(".pre-bracket", { scale: 0.55, autoAlpha: 0, duration: 0.3, ease: "power3.out", stagger: 0.03 }, 0.05)
-        .to(".pre-seg", { scaleX: 1, duration: 0.1, ease: "power2.out", stagger: 0.5 / SEGMENTS }, 0.1)
+      tl.from(".pre-enter", { yPercent: 55, autoAlpha: 0, duration: 0.28, ease: "power3.out", stagger: 0.03 })
+        .from(".pre-bracket", { scale: 0.55, autoAlpha: 0, duration: 0.22, ease: "power3.out", stagger: 0.02 }, 0.05)
+        .to(".pre-seg", { scaleX: 1, duration: 0.08, ease: "power2.out", stagger: 0.62 / SEGMENTS }, 0.08)
         .to(
           counter,
           {
             v: 100,
-            duration: 0.6,
+            duration: 0.62,
             ease: "power2.inOut",
             onUpdate: () => {
               if (count) count.textContent = String(Math.round(counter.v)).padStart(3, "0");
@@ -72,15 +72,15 @@ export default function Preloader() {
               const next = Math.min(words ? words.childElementCount - 1 : 0, Math.floor(counter.v / 25));
               if (next !== step && words) {
                 step = next;
-                gsap.to(words, { yPercent: -(100 / words.childElementCount) * next, duration: 0.3, ease: "power3.out" });
+                gsap.to(words, { yPercent: -(100 / words.childElementCount) * next, duration: 0.14, ease: "power3.out" });
               }
             },
           },
-          0.1,
+          0.08,
         )
-        .to(scene.uniforms.uSweep, { value: 74, duration: 0.26, ease: "power2.in" }, 0.58)
-        .to(".pre-enter", { autoAlpha: 0, yPercent: -26, duration: 0.2, ease: "power2.in" }, 0.62)
-        .to(el, { yPercent: -100, duration: 0.3, ease: "expo.inOut" }, 0.7);
+        .to(scene.uniforms.uSweep, { value: 74, duration: 0.3, ease: "power2.in" }, 0.54)
+        .to(".pre-enter", { autoAlpha: 0, yPercent: -26, duration: 0.22, ease: "power2.in" }, 0.56)
+        .to(el, { yPercent: -100, duration: 0.28, ease: "expo.inOut" }, 0.72);
 
       return () => {
         window.clearTimeout(failsafe);
