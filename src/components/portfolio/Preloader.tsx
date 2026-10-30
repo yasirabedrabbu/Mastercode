@@ -3,16 +3,20 @@
 import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { prefersReducedMotion } from "@/lib/ui";
-import { profile } from "@/data/cv";
+import { createPreloaderScene } from "./preloaderScene";
+import PreloaderHud, { SEGMENTS } from "./PreloaderHud";
 
-/** Full-screen loading curtain: counts up, then wipes away to reveal the site. */
+/** Loading curtain: a glowing water horizon builds behind the HUD, then wipes away. */
 export default function Preloader() {
   const root = useRef<HTMLDivElement>(null);
+  const stage = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
       const el = root.current;
-      if (!el) return;
+      const host = stage.current;
+      if (!el || !host) return;
+
       const unlock = () => {
         document.documentElement.style.overflow = "";
         document.body.style.overflow = "";
@@ -26,47 +30,59 @@ export default function Preloader() {
         return () => unlock();
       }
 
+      const scene = createPreloaderScene(host);
       const counter = { v: 0 };
       const count = el.querySelector<HTMLElement>(".pre-count");
-      gsap
-        .timeline({
-          defaults: { ease: "power2.inOut" },
-          onComplete: () => {
-            gsap.set(el, { autoAlpha: 0 });
-            unlock();
-          },
-        })
-        .to(counter, {
-          v: 100,
-          duration: 1.3,
-          onUpdate: () => {
-            if (count) count.textContent = String(Math.round(counter.v)).padStart(3, "0");
-          },
-        })
-        .to(".pre-bar", { scaleX: 1, duration: 1.3 }, 0)
-        .to(".pre-mark", { yPercent: -120, autoAlpha: 0, duration: 0.5, ease: "power3.inOut" }, "-=0.15")
-        .to(el, { yPercent: -100, duration: 0.85, ease: "expo.inOut" }, "-=0.3");
+      const words = el.querySelector<HTMLElement>(".pre-words");
+      let step = 0;
 
-      return () => unlock();
+      const tl = gsap.timeline({
+        onComplete: () => {
+          gsap.set(el, { autoAlpha: 0 });
+          unlock();
+        },
+      });
+
+      tl.from(".pre-enter", { yPercent: 55, autoAlpha: 0, duration: 0.8, ease: "power3.out", stagger: 0.08 })
+        .from(".pre-bracket", { scale: 0.55, autoAlpha: 0, duration: 0.7, ease: "power3.out", stagger: 0.06 }, 0.15)
+        .to(".pre-seg", { scaleX: 1, duration: 0.18, ease: "power2.out", stagger: 1.6 / SEGMENTS }, 0.2)
+        .to(
+          counter,
+          {
+            v: 100,
+            duration: 1.6,
+            ease: "power2.inOut",
+            onUpdate: () => {
+              if (count) count.textContent = String(Math.round(counter.v)).padStart(3, "0");
+              scene.uniforms.uProgress.value = counter.v / 100;
+              scene.uniforms.uCalm.value = counter.v / 100;
+              /* Advance the status word every quarter of the load. */
+              const next = Math.min(words ? words.childElementCount - 1 : 0, Math.floor(counter.v / 25));
+              if (next !== step && words) {
+                step = next;
+                gsap.to(words, { yPercent: -(100 / words.childElementCount) * next, duration: 0.45, ease: "power3.out" });
+              }
+            },
+          },
+          0.2,
+        )
+        .to(scene.uniforms.uSweep, { value: 74, duration: 0.9, ease: "power2.in" }, 1.65)
+        .to(".pre-enter", { autoAlpha: 0, yPercent: -26, duration: 0.4, ease: "power2.in" }, 1.7)
+        .to(el, { yPercent: -100, duration: 0.9, ease: "expo.inOut" }, 2.3);
+
+      return () => {
+        tl.kill();
+        scene.dispose();
+        unlock();
+      };
     },
     { scope: root },
   );
 
   return (
-    <div ref={root} aria-hidden className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-ink text-on-brand">
-      <div className="pre-mark flex flex-col items-center gap-7">
-        <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-brand font-display text-2xl font-bold tracking-tight">YR</span>
-        <p className="font-display text-xl font-semibold tracking-tight">{profile.name}</p>
-      </div>
-      <div className="absolute inset-x-0 bottom-14 mx-auto w-[min(22rem,72vw)]">
-        <div className="flex items-baseline justify-between font-display text-xs font-bold uppercase tracking-[0.3em] text-on-brand/60">
-          <span>Loading</span>
-          <span className="pre-count tabular-nums text-on-brand">000</span>
-        </div>
-        <div className="mt-4 h-px w-full bg-on-brand/20">
-          <span className="pre-bar block h-px w-full origin-left scale-x-0 bg-accent" />
-        </div>
-      </div>
+    <div ref={root} aria-hidden className="fixed inset-0 z-[200] overflow-hidden bg-ink text-on-brand">
+      <div ref={stage} className="absolute inset-0" />
+      <PreloaderHud />
     </div>
   );
 }
