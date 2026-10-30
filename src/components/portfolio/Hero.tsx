@@ -29,7 +29,9 @@ export default function Hero() {
             </span>
             {profile.role} · Open to remote roles worldwide
           </p>
-          <h1 id="hero-title" className="font-display text-[clamp(2.5rem,6.4vw,6.5rem)] font-bold leading-[0.95] tracking-[-0.045em]">
+          {/* Lines are `nowrap` so the mask reveal stays a single row; the size is tuned
+              per range so the longest line still fits a 320px screen. */}
+          <h1 id="hero-title" className="font-display text-[clamp(1.95rem,8.4vw,3.35rem)] font-bold leading-[0.95] tracking-[-0.045em] md:text-[clamp(2.5rem,6.4vw,6.5rem)]">
             <span className="sr-only">{profile.name}, {profile.role}: designing simple, trusted experiences.</span>
             {["Designing", "simple, trusted", "experiences."].map((line, i) => (
               <span key={line} aria-hidden className="hero-line block overflow-hidden whitespace-nowrap pb-[0.08em]">

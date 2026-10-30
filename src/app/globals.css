@@ -14,6 +14,9 @@
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    /* `clip` (not `hidden`) trims stray horizontal bleed without creating a
+       scroll container, so `position: sticky` sections keep working. */
+    overflow-x: clip;
   }
 
   body {

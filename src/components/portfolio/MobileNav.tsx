@@ -53,7 +53,7 @@ export default function MobileNav() {
       <div
         id="mobile-nav"
         inert={!open}
-        className={`fixed inset-0 z-40 flex flex-col bg-ink px-6 pb-10 pt-28 text-on-brand transition-all duration-500 ease-out motion-reduce:transition-none ${
+        className={`fixed inset-0 z-40 flex flex-col overflow-y-auto overscroll-contain bg-ink px-6 pb-10 pt-28 text-on-brand transition-all duration-500 ease-out motion-reduce:transition-none ${
           open ? "opacity-100" : "pointer-events-none -translate-y-4 opacity-0"
         }`}
       >
