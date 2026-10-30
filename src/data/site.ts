@@ -6,7 +6,8 @@ export type SocialLink = { name: string; href: string; icon: string };
  * one value (or set NEXT_PUBLIC_SITE_URL) when the custom domain is live.
  */
 // TODO(yasir): replace the fallback with the real domain — [X].
-export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com";
+export const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://yasirabedrabbu.vercel.app";
 
 /** Section links, shared by the desktop nav and the mobile menu. */
 export const nav: [string, string][] = [
