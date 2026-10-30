@@ -4,6 +4,9 @@ import { useEffect, useRef } from "react";
 import { createLiquidScene } from "./liquidScene";
 import { createPointerTrail } from "./liquidPointer";
 
+/** Frame-rate independent ease: fraction of the remaining gap to close this frame. */
+const ease = (dt: number, rate: number) => 1 - Math.exp(-dt * rate);
+
 /** Drives one liquid surface: pointer trail, render loop, observers and disposal. */
 export function useLiquidImage(src: string) {
   const host = useRef<HTMLDivElement>(null);
@@ -18,21 +21,26 @@ export function useLiquidImage(src: string) {
     let raf = 0,
       disposed = false,
       visible = false,
-      ready = false;
+      ready = false,
+      prev = performance.now() / 1000;
 
     const render = () => {
       const t = performance.now() / 1000;
+      // Clamp so a long frame or a stalled tab can't jump the whole surface.
+      const dt = Math.min(Math.max(t - prev, 0), 0.05);
+      prev = t;
       uniforms.uTime.value = t;
       // Slow the ease so the surface keeps gliding after the cursor stops.
-      uniforms.uPointer.value.lerp(trail.target, 0.085);
-      uniforms.uHover.value += (trail.hover() - uniforms.uHover.value) * 0.07;
+      uniforms.uPointer.value.lerp(trail.target, ease(dt, 5.2));
+      uniforms.uHover.value += (trail.hover() - uniforms.uHover.value) * ease(dt, 4.5);
       const active = trail.movedAgo(t) < 1.2 ? 1 : 0;
-      uniforms.uPointerActive.value += (active - uniforms.uPointerActive.value) * 0.045;
+      uniforms.uPointerActive.value += (active - uniforms.uPointerActive.value) * ease(dt, 2.8);
       renderer.render(scene, camera);
     };
 
     const start = () => {
       if (raf || reduce || disposed || !visible || !ready) return;
+      prev = performance.now() / 1000;
       const loop = () => {
         render();
         raf = requestAnimationFrame(loop);
