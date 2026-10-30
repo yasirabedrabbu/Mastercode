@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
+import { animateOnScreen, cappedDpr, isLowPower } from "@/lib/perf";
 
 /** Decorative Three.js scene: a glowing wireframe form inside a particle field. */
 export default function HeroScene() {
@@ -10,9 +11,10 @@ export default function HeroScene() {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // Phones, low-core machines and reduced-motion visitors get one static frame.
+    const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches || isLowPower();
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(cappedDpr(2));
     el.appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();
@@ -50,28 +52,33 @@ export default function HeroScene() {
       renderer.setSize(w, h);
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
+      if (still) renderer.render(scene, camera);
     };
     resize();
     window.addEventListener("resize", resize);
     window.addEventListener("pointermove", onMove);
 
-    let raf = 0;
-    const clock = new THREE.Clock();
-    const tick = () => {
-      const t = clock.getElapsedTime();
+    const timer = new THREE.Timer();
+    // Page Visibility API: no giant delta when the tab comes back.
+    timer.connect(document);
+    const draw = () => renderer.render(scene, camera);
+    const frame = () => {
+      timer.update();
+      const t = timer.getElapsed();
       knot.rotation.x = t * 0.15;
       knot.rotation.y = t * 0.2;
       points.rotation.y = t * 0.03;
       group.rotation.x += (mouse.y * 0.4 - group.rotation.x) * 0.05;
       group.rotation.y += (mouse.x * 0.6 - group.rotation.y) * 0.05;
-      renderer.render(scene, camera);
-      raf = requestAnimationFrame(tick);
+      draw();
     };
-    if (reduce) renderer.render(scene, camera);
-    else tick();
+    // The loop only runs while the hero is on screen and the tab is foregrounded.
+    const stop = still ? () => {} : animateOnScreen(el, frame);
+    if (still) draw();
 
     return () => {
-      cancelAnimationFrame(raf);
+      stop();
+      timer.dispose();
       window.removeEventListener("resize", resize);
       window.removeEventListener("pointermove", onMove);
       knotGeo.dispose();

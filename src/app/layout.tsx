@@ -47,6 +47,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={fontVariables}>
       <body suppressHydrationWarning>
+        {/* Opts the intro curtain in on the first visit of a session. Runs before the
+            page paints, and is skipped entirely for reduced motion or blocked storage —
+            so the curtain can never be what hides the content. */}
+        <Script id="preloader-gate" strategy="beforeInteractive">
+          {`try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches&&!sessionStorage.getItem("preloader")){document.documentElement.dataset.preload="on";sessionStorage.setItem("preloader","1")}}catch(e){}`}
+        </Script>
         <JsonLd />
         <Script id="pinterest-tag" strategy="afterInteractive">
           {`

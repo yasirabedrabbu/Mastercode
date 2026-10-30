@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { isLowPower, observeOnScreen } from "@/lib/perf";
 import { createLiquidScene } from "./liquidScene";
 import { createPointerTrail } from "./liquidPointer";
 
@@ -14,7 +15,8 @@ export function useLiquidImage(src: string) {
   useEffect(() => {
     const el = host.current;
     if (!el) return;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // Reduced motion, phones and low-core machines get one static frame instead of a loop.
+    const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches || isLowPower();
     const { renderer, scene, camera, uniforms, ripples, setSize, load, dispose } = createLiquidScene(el);
     const trail = createPointerTrail(el, ripples);
 
@@ -39,7 +41,7 @@ export function useLiquidImage(src: string) {
     };
 
     const start = () => {
-      if (raf || reduce || disposed || !visible || !ready) return;
+      if (raf || still || disposed || !visible || !ready) return;
       prev = performance.now() / 1000;
       const loop = () => {
         render();
@@ -54,17 +56,16 @@ export function useLiquidImage(src: string) {
 
     const ro = new ResizeObserver(() => {
       setSize();
-      if (reduce) render();
+      if (still) render();
     });
     ro.observe(el);
 
-    // Pause the render loop whenever the card is off-screen.
-    const io = new IntersectionObserver(([entry]) => {
-      visible = entry.isIntersecting;
-      if (visible) start();
+    // Pause the render loop whenever the card scrolls away or the tab is hidden.
+    const release = observeOnScreen(el, (on) => {
+      visible = on;
+      if (on) start();
       else stop();
     });
-    io.observe(el);
 
     setSize();
 
@@ -80,7 +81,7 @@ export function useLiquidImage(src: string) {
       disposed = true;
       stop();
       ro.disconnect();
-      io.disconnect();
+      release();
       trail.detach();
       dispose();
     };

@@ -72,11 +72,12 @@ export function createPreloaderScene(host: HTMLElement) {
   setSize();
   window.addEventListener("pointermove", onMove);
 
-  const clock = new THREE.Clock();
+  const timer = new THREE.Timer();
   let elapsed = 0;
   let raf = 0;
-  const tick = () => {
-    const dt = Math.min(clock.getDelta(), 0.05);
+  const tick = (now?: number) => {
+    timer.update(now);
+    const dt = Math.min(timer.getDelta(), 0.05);
     elapsed += dt;
     uniforms.uTime.value = elapsed;
     dust.uniforms.uTime.value = elapsed;
@@ -89,10 +90,11 @@ export function createPreloaderScene(host: HTMLElement) {
     composer.render();
     raf = requestAnimationFrame(tick);
   };
-  tick();
+  raf = requestAnimationFrame(tick);
 
   const dispose = () => {
     cancelAnimationFrame(raf);
+    timer.dispose();
     observer.disconnect();
     window.removeEventListener("pointermove", onMove);
     geometry.dispose();

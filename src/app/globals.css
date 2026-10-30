@@ -74,4 +74,15 @@
     scroll-behavior: auto;
   }
 }
+
+/* The intro curtain only un-hides when the head gate opts in on a first visit.
+   Deliberately unlayered so it outranks Tailwind's `hidden` utility. The timed
+   animation is a failsafe: if the script never runs, the curtain still clears
+   itself instead of trapping the page. */
+[data-preload="on"] .preloader {
+  display: block;
+  animation: preloader-failsafe 0.4s linear 2.5s forwards;
+}
+
 @keyframes marquee { to { transform: translateX(-50%); } }
+@keyframes preloader-failsafe { to { opacity: 0; visibility: hidden; } }

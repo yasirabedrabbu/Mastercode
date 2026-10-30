@@ -1,6 +1,6 @@
 import { projects, projectsCta } from "@/data/projects";
 import Eyebrow from "./Eyebrow";
-import LiquidImage from "./LiquidImage";
+import LiquidImageLazy from "./LiquidImageLazy";
 
 const clean = (s: string) => s.replace(/\p{Extended_Pictographic}|\uFE0F/gu, "").trim();
 
@@ -45,7 +45,7 @@ export default function Shots() {
                     </span>
                   </div>
                   <div className="relative aspect-[4/3] overflow-hidden md:aspect-auto md:min-h-[32rem]">
-                    <LiquidImage src={p.image} />
+                    <LiquidImageLazy src={p.image} />
                   </div>
                 </a>
                 <span aria-hidden className="shot-dim pointer-events-none absolute inset-0 bg-black opacity-0" />
