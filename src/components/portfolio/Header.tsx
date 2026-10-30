@@ -7,14 +7,8 @@ import { playClick, setSoundEnabled, soundEnabled, subscribeSound } from "@/lib/
 import { gsap, useGSAP, ScrollTrigger } from "@/lib/gsap";
 import { focus, prefersReducedMotion, tapAnim } from "@/lib/ui";
 import { profile } from "@/data/cv";
-
-const nav = [
-  ["About", "#about"],
-  ["Experience", "#experience"],
-  ["Work", "#work"],
-  ["Skills", "#skills"],
-  ["FAQ", "#faq"],
-];
+import { nav } from "@/data/site";
+import MobileNav from "./MobileNav";
 
 export default function Header() {
   const navList = useRef<HTMLUListElement>(null);
@@ -67,7 +61,8 @@ export default function Header() {
           <button type="button" onClick={(e) => { const next = !sound; setSoundEnabled(next); if (next) playClick(); tapAnim(e.currentTarget); }} aria-pressed={sound} aria-label={sound ? "Mute interface sounds" : "Enable interface sounds"} className={`nav-tap flex h-10 w-10 items-center justify-center rounded-full border border-hair text-ink transition hover:border-brand hover:text-brand ${focus}`}>
             <HugeiconsIcon icon={sound ? VolumeHighIcon : VolumeMute02Icon} size={18} aria-hidden />
           </button>
-          <a href={`mailto:${profile.email}`} onClick={navTap} className={`nav-tap rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-on-brand transition-colors hover:bg-brand-hover ${focus}`}>Hire me</a>
+          <a href={`mailto:${profile.email}`} onClick={navTap} className={`nav-tap hidden rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-on-brand transition-colors hover:bg-brand-hover md:inline-flex ${focus}`}>Hire me</a>
+          <MobileNav />
         </div>
       </nav>
     </header>
