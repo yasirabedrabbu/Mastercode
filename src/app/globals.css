@@ -60,6 +60,14 @@
     background-color: var(--color-cta);
     color: var(--color-on-cta);
   }
+
+  /* Fallback ring so every focusable element stays visible even if a component
+     forgets its utility classes. Burgundy reads on the cream surfaces; dark
+     sections override the colour with `outline-on-brand`. */
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+  }
 }
 
 @layer utilities {

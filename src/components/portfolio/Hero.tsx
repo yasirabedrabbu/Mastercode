@@ -1,19 +1,15 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { Download01Icon } from "@hugeicons/core-free-icons";
 import { gsap } from "@/lib/gsap";
 import { focus, prefersReducedMotion } from "@/lib/ui";
 import { profile } from "@/data/cv";
+import ArrowUpRight from "./ArrowUpRight";
 import HeroPortrait from "./HeroPortrait";
 
 /* The WebGL scene is decoration — load it after hydration so `three` stays out
    of the initial bundle. */
 const HeroScene = dynamic(() => import("./HeroScene"), { ssr: false });
-
-/* TODO(yasir): drop the real PDF at public/Yasir-Abed-Rabbu-CV.pdf — the button 404s until then. */
-const CV_HREF = "/Yasir-Abed-Rabbu-CV.pdf";
 
 export default function Hero() {
   return (
@@ -60,14 +56,10 @@ export default function Hero() {
           </p>
           <div className="hero-fade mt-10 flex flex-wrap items-center gap-4">
             <a href="#work" className={`group inline-flex items-center gap-3 rounded-full bg-ink px-7 py-4 font-semibold text-on-brand transition hover:bg-brand ${focus}`}>
-              View case studies <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
+              View case studies <ArrowUpRight size={18} className="transition-transform group-hover:translate-x-1" />
             </a>
             <a href="#contact" className={`inline-flex items-center gap-3 rounded-full border-2 border-ink px-7 py-[0.875rem] font-semibold transition hover:bg-ink hover:text-on-brand ${focus}`}>
               Let&apos;s talk
-            </a>
-            <a href={CV_HREF} download className={`inline-flex items-center gap-3 rounded-full border-2 border-ink px-7 py-[0.875rem] font-semibold transition hover:bg-ink hover:text-on-brand ${focus}`}>
-              Download CV
-              <HugeiconsIcon icon={Download01Icon} size={18} aria-hidden />
             </a>
           </div>
         </div>

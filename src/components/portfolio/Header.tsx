@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useSyncExternalStore } from "react";
+import Image from "next/image";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { VolumeHighIcon, VolumeMute02Icon } from "@hugeicons/core-free-icons";
 import { playClick, setSoundEnabled, soundEnabled, subscribeSound } from "@/lib/clickSound";
@@ -47,7 +48,7 @@ export default function Header() {
     <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-8">
       <nav aria-label="Primary" className="mx-auto flex max-w-7xl items-center justify-between rounded-full border border-hair bg-bg/80 px-3 py-2.5 backdrop-blur-xl md:px-4">
         <a href="#top" onClick={navTap} aria-label={`${profile.name}, home`} className={`nav-tap group flex items-center gap-3 rounded-full pl-1 ${focus}`}>
-          <span aria-hidden className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand font-display text-lg font-bold tracking-tight text-on-brand transition-transform duration-500 group-hover:rotate-[-8deg]">YR</span>
+          <Image src="/favicon.svg" alt="" aria-hidden width={44} height={44} className="h-11 w-11 rounded-2xl transition-transform duration-500 group-hover:rotate-[-8deg]" />
           <span className="font-display text-2xl font-bold leading-none tracking-[-0.03em]">Yasir<span className="text-accent">.</span></span>
         </a>
         <ul ref={navList} className="relative hidden items-center gap-1 text-sm font-medium text-ink-soft md:flex">

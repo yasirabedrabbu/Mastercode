@@ -3,9 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { Mail01Icon, Call02Icon, Location01Icon, ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
+import { Mail01Icon, Call02Icon, Location01Icon } from "@hugeicons/core-free-icons";
 import { focus, focusOnDark } from "@/lib/ui";
 import { profile } from "@/data/cv";
+import ArrowUpRight from "./ArrowUpRight";
 
 const details = [
   { icon: Mail01Icon, label: "Email", value: profile.email, href: `mailto:${profile.email}` },
@@ -75,7 +76,7 @@ export default function HeroPortrait() {
               </ul>
             </div>
             <button ref={backRef} type="button" onClick={() => setFlipped(false)} className={`inline-flex w-fit items-center gap-3 rounded-full bg-on-brand px-5 py-3 text-sm font-bold text-brand ${focusOnDark}`}>
-              <HugeiconsIcon icon={ArrowUpRight01Icon} size={18} aria-hidden className="rotate-[225deg]" />
+              <ArrowUpRight size={18} className="rotate-[225deg]" />
               Back to portrait
             </button>
           </div>

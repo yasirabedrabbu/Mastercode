@@ -65,7 +65,7 @@ export default function CaseStudies() {
                 <div
                   id={`case-panel-${i}`}
                   inert={!isOpen}
-                  className={`grid transition-all duration-500 ease-out ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+                  className={`grid transition-all duration-500 ease-out motion-reduce:transition-none ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
                 >
                   <dl className="grid gap-8 overflow-hidden pb-10 md:grid-cols-3 md:gap-10">
                     {steps.map(([k, label, icon]) => (
