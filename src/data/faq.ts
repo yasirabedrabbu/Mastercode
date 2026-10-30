@@ -14,16 +14,16 @@ export const faqs: Faq[] = [
   {
     question: "Do you also code?",
     answer:
-      "I build production-ready front-ends in React, Next.js and Tailwind. That means handoff files are written by someone who has to implement them, so the specs actually hold up.",
+      "I build front-ends with Tailwind CSS, React and Next.js at a working level, enough to prototype ideas and write handoff specs developers can trust.",
   },
   {
-    question: "Are you available for freelance work?",
+    question: "Are you open to remote roles?",
     answer:
-      "Yes — I take on two client projects at a time, typically four to eight week engagements. Retainers are available once the first project ships.",
+      "Yes — a full-time remote role is my priority. Alongside it I take on two freelance projects at a time, typically four to eight week engagements, with retainers available once the first project ships.",
   },
   {
     question: "What tools do you use?",
     answer:
-      "Figma for design and prototyping, Maze and Hotjar for research, Linear for tracking, and VS Code plus GSAP for anything that needs to move.",
+      "Figma for design and prototyping, v0.dev, Lovable and Figma Make for AI-assisted prototyping, and VS Code plus GSAP for anything that needs to move.",
   },
 ];

@@ -2,17 +2,42 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
 import SmoothScroll from "@/components/layout/SmoothScroll";
+import JsonLd from "@/components/layout/JsonLd";
 import { fontVariables } from "@/lib/fonts";
+import { siteUrl } from "@/data/site";
 
 const title = "Yasir Abed Rabbu — UI/UX Designer";
 const description =
   "UI/UX designer in Dhaka, Bangladesh, turning complex SaaS, healthcare and fintech workflows into simple, trustworthy experiences.";
+const ogAlt = "Yasir Abed Rabbu — UI/UX designer based in Dhaka, Bangladesh.";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title,
   description,
-  openGraph: { title, description, type: "website" },
-  twitter: { card: "summary_large_image", title, description },
+  alternates: { canonical: "/" },
+  openGraph: {
+    title,
+    description,
+    url: "/",
+    siteName: "Yasir Abed Rabbu",
+    locale: "en_US",
+    type: "website",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: ogAlt }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: [{ url: "/og.png", alt: ogAlt }],
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+  },
   other: {
     "p:domain_verify": "c9cdc70ae2430835bf5e8a7d19174ed9",
   },
@@ -22,6 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={fontVariables}>
       <body suppressHydrationWarning>
+        <JsonLd />
         <Script id="pinterest-tag" strategy="afterInteractive">
           {`
             !function(e){if(!window.pintrk){window.pintrk=function(){

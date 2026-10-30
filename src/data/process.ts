@@ -10,7 +10,7 @@ export const processSteps: ProcessStep[] = [
     id: "discovery",
     title: "Discovery & Research",
     description:
-      "We've worked in the top-companies in tech, crypto and advertising so you can be assured you're in great hands.",
+      "I start by understanding your users, business goals and constraints through stakeholder conversations, competitor review and usability findings, so every decision is based on evidence.",
     icon: "/icons/process-01-discovery.svg",
   },
   {
