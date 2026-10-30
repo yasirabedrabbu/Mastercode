@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Mail01Icon, Call02Icon, Location01Icon, ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
-import { focus } from "@/lib/ui";
+import { focus, focusOnDark } from "@/lib/ui";
 import { profile } from "@/data/cv";
 
 const details = [
@@ -16,6 +16,19 @@ const details = [
 /** Hero portrait that flips on click to reveal direct contact details. */
 export default function HeroPortrait() {
   const [flipped, setFlipped] = useState(false);
+  const flipRef = useRef<HTMLButtonElement>(null);
+  const backRef = useRef<HTMLButtonElement>(null);
+  const mounted = useRef(false);
+
+  // The control that was just used becomes `inert`, which would drop focus to
+  // <body>; hand it to the card that is actually visible instead.
+  useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true;
+      return;
+    }
+    (flipped ? backRef : flipRef).current?.focus();
+  }, [flipped]);
 
   return (
     <div className="hero-photo relative aspect-[568/696] w-full">
@@ -52,7 +65,7 @@ export default function HeroPortrait() {
                   return (
                     <li key={d.label}>
                       {d.href ? (
-                        <a href={d.href} className={`flex items-start gap-3.5 ${focus}`}>{body}</a>
+                        <a href={d.href} className={`flex items-start gap-3.5 ${focusOnDark}`}>{body}</a>
                       ) : (
                         <span className="flex items-start gap-3.5">{body}</span>
                       )}
@@ -61,16 +74,18 @@ export default function HeroPortrait() {
                 })}
               </ul>
             </div>
-            <button type="button" onClick={() => setFlipped(false)} className={`inline-flex w-fit items-center gap-3 rounded-full bg-on-brand px-5 py-3 text-sm font-bold text-brand ${focus}`}>
+            <button ref={backRef} type="button" onClick={() => setFlipped(false)} className={`inline-flex w-fit items-center gap-3 rounded-full bg-on-brand px-5 py-3 text-sm font-bold text-brand ${focusOnDark}`}>
               <HugeiconsIcon icon={ArrowUpRight01Icon} size={18} aria-hidden className="rotate-[225deg]" />
               Back to portrait
             </button>
           </div>
 
           <button
+            ref={flipRef}
             type="button"
             onClick={() => setFlipped(true)}
             inert={flipped}
+            aria-pressed={flipped}
             aria-label={`Show contact details for ${profile.name}`}
             className={`absolute inset-0 rounded-[2.5rem] [backface-visibility:hidden] ${focus}`}
           >

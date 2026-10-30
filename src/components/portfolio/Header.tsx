@@ -13,7 +13,8 @@ import MobileNav from "./MobileNav";
 export default function Header() {
   const navList = useRef<HTMLUListElement>(null);
   const [activeNav, setActiveNav] = useState<string | null>(null);
-  const sound = useSyncExternalStore(subscribeSound, soundEnabled, () => true);
+  /* Off on the server and on a first visit — sound is opt-in only. */
+  const sound = useSyncExternalStore(subscribeSound, soundEnabled, () => false);
 
   const navTap = (e: React.MouseEvent<HTMLAnchorElement>) => {
     playClick();
