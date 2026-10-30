@@ -18,7 +18,7 @@ export const impact = [
 export const experience = [
   {
     role: "Senior Executive, UI/UX Designer",
-    company: "Softvence Delta",
+    company: "Backbencher Studio",
     period: "Jul 2026 – Present",
     points: [
       "Lead a team of UI designers, setting direction and reviewing every screen for hierarchy, spacing, typography, contrast and grid alignment.",
@@ -29,7 +29,7 @@ export const experience = [
   },
   {
     role: "Jr. UI/UX Designer",
-    company: "Softvence Delta",
+    company: "Backbencher Studio",
     period: "Feb 2025 – Jun 2026",
     points: [
       "Designed 50+ end-to-end interfaces for SaaS, healthcare and fintech clients in a cross-functional team.",
