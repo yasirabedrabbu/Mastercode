@@ -34,7 +34,7 @@ export default function Contact() {
               Let&apos;s build something <span className="italic text-accent">people trust.</span>
             </h2>
             <p className="mt-8 max-w-lg text-lg leading-relaxed text-on-brand/85">
-              Have a product, a redesign or a full-time role in mind? Pick the way that suits you best. I usually reply within 24 hours.
+              I&apos;m looking for a full-time remote role first, and I take on a small number of freelance projects alongside it. Pick the way that suits you best — I usually reply within 24 hours.
             </p>
 
             <ul className="mt-12 grid gap-3 sm:grid-cols-3" aria-label="Ways to contact me">

@@ -66,9 +66,9 @@ export const caseStudies = [
 
 export const skills = [
   { group: "Design", items: ["Advanced Figma", "Auto layout & variants", "Design tokens", "Prototyping", "Typography", "Data visualization"] },
-  { group: "UX & Research", items: ["Competitor analysis", "Usability testing", "User flows", "Journey mapping", "Wireframing", "Agile / Scrum"] },
-  { group: "Accessibility & Conversion", items: ["WCAG 2.2", "Conversion-focused design", "Human-centered thinking", "Keyboard-friendly UI"] },
-  { group: "AI & Frontend", items: ["v0.dev", "Lovable", "Figma Make", "Tailwind CSS", "React", "Next.js"] },
+  { group: "UX & Research", items: ["Competitor analysis", "Secondary research", "Wireframing", "Usability testing", "User flows", "Journey mapping", "Agile / Scrum", "Developer handoff"] },
+  { group: "Accessibility & Conversion", items: ["Conversion-focused design", "Human-centered thinking", "WCAG 2.2 (contrast, scalable text, keyboard friendly)"] },
+  { group: "AI & Frontend", items: ["v0.dev", "Lovable", "Figma Make", "Tailwind CSS", "React (basic)", "Next.js (basic)"] },
 ];
 
 export const education = {
@@ -81,5 +81,5 @@ export const certifications = [
   "Fundamentals of UI/UX Design — Google",
   "Introduction to UI Design — Microsoft",
   "Industrial Attachment — Creative IT Institute",
-  "Claude AI Fundamentals",
+  "Claude AI Fundamentals — Anthropic",
 ];

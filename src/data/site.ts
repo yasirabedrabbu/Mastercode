@@ -1,5 +1,13 @@
 export type SocialLink = { name: string; href: string; icon: string };
 
+/**
+ * Single source of truth for the deployed origin. `metadataBase`, the canonical URL,
+ * OG/Twitter images, `sitemap.xml` and `robots.txt` all read from here — change this
+ * one value (or set NEXT_PUBLIC_SITE_URL) when the custom domain is live.
+ */
+// TODO(yasir): replace the fallback with the real domain — [X].
+export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com";
+
 /** Section links, shared by the desktop nav and the mobile menu. */
 export const nav: [string, string][] = [
   ["About", "#about"],
