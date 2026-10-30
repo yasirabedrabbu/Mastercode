@@ -6,14 +6,6 @@ export type Project = {
   href: string;
 };
 
-export const projectsHeader = {
-  title: "My Latest Project",
-  subtitle:
-    "Great design doesn't happen by accident. It's a process one Yasir has " +
-    "refined project after project, so nothing gets missed and nothing " +
-    "feels rushed.",
-};
-
 export const projects: Project[] = [
   {
     slug: "alpinevista",
@@ -52,6 +44,5 @@ export const projects: Project[] = [
 ];
 
 export const projectsCta = {
-  label: "View more projects",
   href: "https://dribbble.com/yasirabedrabbu",
 };

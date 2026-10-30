@@ -22,7 +22,8 @@ export default function HeroScene() {
     const group = new THREE.Group();
     scene.add(group);
     const knotGeo = new THREE.TorusKnotGeometry(1.6, 0.45, 180, 20);
-    const knot = new THREE.Mesh(knotGeo, new THREE.MeshBasicMaterial({ color: 0xc9a24b, wireframe: true, transparent: true, opacity: 0.35 }));
+    const knotMat = new THREE.MeshBasicMaterial({ color: 0xc9a24b, wireframe: true, transparent: true, opacity: 0.35 });
+    const knot = new THREE.Mesh(knotGeo, knotMat);
     group.add(knot);
 
     const count = 1400;
@@ -35,7 +36,8 @@ export default function HeroScene() {
     }
     const ptsGeo = new THREE.BufferGeometry();
     ptsGeo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
-    const points = new THREE.Points(ptsGeo, new THREE.PointsMaterial({ color: 0x6b1a2b, size: 0.03, transparent: true, opacity: 0.6 }));
+    const pointsMat = new THREE.PointsMaterial({ color: 0x6b1a2b, size: 0.03, transparent: true, opacity: 0.6 });
+    const points = new THREE.Points(ptsGeo, pointsMat);
     group.add(points);
 
     const mouse = { x: 0, y: 0 };
@@ -73,7 +75,9 @@ export default function HeroScene() {
       window.removeEventListener("resize", resize);
       window.removeEventListener("pointermove", onMove);
       knotGeo.dispose();
+      knotMat.dispose();
       ptsGeo.dispose();
+      pointsMat.dispose();
       renderer.dispose();
       el.removeChild(renderer.domElement);
     };

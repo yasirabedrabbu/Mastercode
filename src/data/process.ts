@@ -1,9 +1,3 @@
-export const processHeader = {
-  title: "Process That Breaks The Competition",
-  subtitle:
-    "Every product is different, but the process stays sharp — discovery, structure, design, and handoff, done in an order that actually prevents chaos later.",
-};
-
 export type ProcessStep = {
   id: string;
   title: string;

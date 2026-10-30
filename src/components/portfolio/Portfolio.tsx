@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-import { playClick, playScrollTick, setSoundEnabled, soundEnabled, unlockAudio } from "@/lib/clickSound";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { playClick, playScrollTick, setSoundEnabled, soundEnabled, subscribeSound, unlockAudio } from "@/lib/clickSound";
 import { gsap, useGSAP, ScrollTrigger } from "@/lib/gsap";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Mail01Icon, Call02Icon, WhatsappIcon, ArrowUpRight01Icon, Linkedin01Icon, DribbbleIcon, BehanceIcon, NewTwitterIcon, Location01Icon, Clock01Icon, PenTool03Icon, UserSearch01Icon, UniversalAccessIcon, AiMagicIcon, CheckmarkBadge01Icon, Mortarboard01Icon, Certificate01Icon, Award01Icon, Target02Icon, Idea01Icon, ChartIncreaseIcon, Briefcase01Icon, HelpCircleIcon, UserIcon, Image01Icon, Layers01Icon, Route01Icon, StarIcon, SparklesIcon, Search01Icon, DashboardSquare01Icon, PaintBoardIcon, CodeIcon, VolumeHighIcon, VolumeMute02Icon } from "@hugeicons/core-free-icons";
@@ -65,8 +65,7 @@ export default function Portfolio() {
   const [activeSkill, setActiveSkill] = useState(0);
   const navList = useRef<HTMLUListElement>(null);
   const [activeNav, setActiveNav] = useState<string | null>(null);
-  const [sound, setSound] = useState(true);
-  useEffect(() => setSound(soundEnabled()), []);
+  const sound = useSyncExternalStore(subscribeSound, soundEnabled, () => true);
 
   // Trackpad-style scroll ticks: one soft tick every ~90px, throttled.
   useEffect(() => {
@@ -199,7 +198,10 @@ export default function Portfolio() {
 
 
         gsap.fromTo(".timeline-progress", { scaleY: 0 }, { scaleY: 1, ease: "none", scrollTrigger: { trigger: "#experience", start: "top 60%", end: "bottom 70%", scrub: true } });
+      });
 
+      // The sticky shot-stack only exists at md+, so gate its scrub effects to the same breakpoint.
+      mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
         const cards = gsap.utils.toArray<HTMLElement>(".shot-card");
         cards.forEach((card, i) => {
           gsap.from(card.querySelector(".shot-img"), { scale: 1.25, ease: "none", scrollTrigger: { trigger: card, start: "top bottom", end: "top top", scrub: true } });
@@ -235,7 +237,7 @@ export default function Portfolio() {
             ))}
           </ul>
           <div className="flex items-center gap-2">
-            <button type="button" onClick={(e) => { const next = !sound; setSound(next); setSoundEnabled(next); if (next) playClick(); tapAnim(e.currentTarget); }} aria-pressed={sound} aria-label={sound ? "Mute interface sounds" : "Enable interface sounds"} className={`nav-tap flex h-10 w-10 items-center justify-center rounded-full border border-hair text-ink transition hover:border-brand hover:text-brand ${focus}`}>
+            <button type="button" onClick={(e) => { const next = !sound; setSoundEnabled(next); if (next) playClick(); tapAnim(e.currentTarget); }} aria-pressed={sound} aria-label={sound ? "Mute interface sounds" : "Enable interface sounds"} className={`nav-tap flex h-10 w-10 items-center justify-center rounded-full border border-hair text-ink transition hover:border-brand hover:text-brand ${focus}`}>
               <HugeiconsIcon icon={sound ? VolumeHighIcon : VolumeMute02Icon} size={18} aria-hidden />
             </button>
             <a href={`mailto:${profile.email}`} onClick={navTap} className={`nav-tap rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-on-brand transition-colors hover:bg-brand-hover ${focus}`}>Hire me</a>
@@ -448,15 +450,15 @@ export default function Portfolio() {
               </div>
             </div>
 
-            <ol className="flex flex-col gap-[12vh]">
+            <ol className="flex flex-col gap-6 md:gap-[12vh]">
               {projects.map((p, i) => (
-                <li key={p.slug} className="shot-card sticky" style={{ top: `${6 + i * 2}rem` }}>
+                <li key={p.slug} className="shot-card md:sticky" style={{ top: `${6 + i * 2}rem` }}>
                   <article className="shot-inner origin-top overflow-hidden rounded-[2rem] border border-white/10 bg-[#2a2a30] will-change-transform">
                     <a href={p.href} target="_blank" rel="noreferrer" aria-label={`${clean(p.title)} on Dribbble (opens in new tab)`} className="group grid md:grid-cols-[1fr_1.6fr] focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-on-brand">
                       <div className="flex flex-col justify-between gap-10 p-8 md:p-12">
                         <div className="flex items-center justify-between text-sm font-semibold text-on-brand/75">
                           <span>
-                            <span className="text-on-brand">0{i + 1}</span> / 0{projects.length}
+                            <span className="text-on-brand">{String(i + 1).padStart(2, "0")}</span> / {String(projects.length).padStart(2, "0")}
                           </span>
                           <span className="rounded-full border border-white/15 px-3 py-1">Concept</span>
                         </div>

@@ -1,13 +1,3 @@
-export const faqHeader = {
-  title: "Everything You Need To Know",
-  subtitle: "A few things worth knowing before we start working together.",
-};
-
-export const faqVisual = {
-  src: "/images/faq-visual.jpg",
-  alt: "Yasir mapping out a product flow",
-};
-
 export type Faq = { question: string; answer: string };
 
 export const faqs: Faq[] = [

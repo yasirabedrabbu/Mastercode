@@ -3,9 +3,22 @@
 /** Short, soft synthesized "tick" inspired by iOS UI clicks (Web Audio, no asset). */
 let ctx: AudioContext | null = null;
 const KEY = "ui-sound";
+const listeners = new Set<() => void>();
 
 export const soundEnabled = () => typeof window !== "undefined" && localStorage.getItem(KEY) !== "off";
-export const setSoundEnabled = (on: boolean) => localStorage.setItem(KEY, on ? "on" : "off");
+
+export const setSoundEnabled = (on: boolean) => {
+  localStorage.setItem(KEY, on ? "on" : "off");
+  listeners.forEach((notify) => notify());
+};
+
+/** Subscribes to sound-preference changes — for `useSyncExternalStore`. */
+export const subscribeSound = (onChange: () => void) => {
+  listeners.add(onChange);
+  return () => {
+    listeners.delete(onChange);
+  };
+};
 
 export function playClick() {
   if (!soundEnabled()) return;

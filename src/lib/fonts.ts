@@ -2,9 +2,9 @@
 import { Manrope } from "next/font/google";
 import localFont from "next/font/local";
 
+// Manrope is a variable font — pass subsets only, no weight array.
 export const manrope = Manrope({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-manrope",
   display: "swap",
 });
