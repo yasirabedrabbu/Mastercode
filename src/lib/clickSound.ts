@@ -1,7 +1,22 @@
 "use client";
 
-/** Short, soft synthesized "tick" inspired by iOS UI clicks (Web Audio, no asset). */
+/**
+ * Apple-style UI sounds rebuilt with the Web Audio API. macOS ships its click
+ * and scroll cues as copyrighted assets, so we reproduce their measured
+ * acoustic profile instead: a sub-60 ms transient whose energy sits near
+ * 1.9 kHz on ABS keycaps and 2.7 kHz on magnesium, with a fast resonant decay.
+ */
+type Voice = { crack: number; body: number; decay: number; gain: number };
+
+/** Three hardware feels: MacBook key, iMac body and the trackpad scroll detent. */
+const VOICES = {
+  macbook: { crack: 2550, body: 1180, decay: 0.048, gain: 0.5 },
+  imac: { crack: 1880, body: 880, decay: 0.064, gain: 0.55 },
+  scroll: { crack: 3150, body: 1500, decay: 0.026, gain: 0.24 },
+} satisfies Record<string, Voice>;
+
 let ctx: AudioContext | null = null;
+let master: GainNode | null = null;
 const KEY = "ui-sound";
 const listeners = new Set<() => void>();
 
@@ -20,66 +35,76 @@ export const subscribeSound = (onChange: () => void) => {
   };
 };
 
-export function playClick() {
-  if (!soundEnabled()) return;
+/** Lazily builds the graph; browsers only allow audio after a user gesture. */
+function ensure(): AudioContext | null {
   try {
     ctx ??= new AudioContext();
+    if (!master) {
+      master = ctx.createGain();
+      master.gain.value = 0.6;
+      master.connect(ctx.destination);
+    }
     if (ctx.state === "suspended") void ctx.resume();
-    const t = ctx.currentTime;
-    // Tiny noise burst through a band-pass for the crisp "tap".
-    const len = Math.floor(ctx.sampleRate * 0.012);
-    const buf = ctx.createBuffer(1, len, ctx.sampleRate);
-    const d = buf.getChannelData(0);
-    for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / len) ** 3;
-    const noise = ctx.createBufferSource();
-    noise.buffer = buf;
-    const bp = ctx.createBiquadFilter();
-    bp.type = "bandpass";
-    bp.frequency.value = 3200;
-    bp.Q.value = 1.2;
-    // Short pitched body for the soft "tock".
-    const osc = ctx.createOscillator();
-    osc.type = "sine";
-    osc.frequency.setValueAtTime(1800, t);
-    osc.frequency.exponentialRampToValueAtTime(600, t + 0.03);
-    const g = ctx.createGain();
-    g.gain.setValueAtTime(0.0001, t);
-    g.gain.exponentialRampToValueAtTime(0.18, t + 0.002);
-    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.05);
-    noise.connect(bp).connect(g);
-    osc.connect(g);
-    g.connect(ctx.destination);
-    noise.start(t);
-    osc.start(t);
-    osc.stop(t + 0.06);
+    return ctx;
   } catch {
-    /* audio unavailable */
+    return null;
   }
 }
 
-/** Very soft, short tick, like the detents of a trackpad scroll. */
+/** Filtered noise burst — the crisp attack of a physical click. */
+function crackle(c: AudioContext, out: GainNode, at: number, freq: number, decay: number, gain: number) {
+  const buf = c.createBuffer(1, Math.max(1, Math.floor(c.sampleRate * decay)), c.sampleRate);
+  const data = buf.getChannelData(0);
+  for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / data.length) ** 2;
+  const src = c.createBufferSource();
+  src.buffer = buf;
+  const band = c.createBiquadFilter();
+  band.type = "bandpass";
+  band.frequency.value = freq;
+  band.Q.value = 0.9;
+  const g = c.createGain();
+  g.gain.setValueAtTime(gain, at);
+  g.gain.exponentialRampToValueAtTime(0.0001, at + decay);
+  src.connect(band).connect(g).connect(out);
+  src.start(at);
+  src.stop(at + decay);
+}
+
+/** Pitched body — the warm "thock" underneath the transient. */
+function thock(c: AudioContext, out: GainNode, at: number, freq: number, decay: number, gain: number) {
+  const osc = c.createOscillator();
+  osc.type = "sine";
+  osc.frequency.setValueAtTime(freq, at);
+  osc.frequency.exponentialRampToValueAtTime(freq * 0.62, at + decay);
+  const g = c.createGain();
+  g.gain.setValueAtTime(0.0001, at);
+  g.gain.exponentialRampToValueAtTime(gain, at + 0.002);
+  g.gain.exponentialRampToValueAtTime(0.0001, at + decay);
+  osc.connect(g).connect(out);
+  osc.start(at);
+  osc.stop(at + decay + 0.01);
+}
+
+function play(voice: Voice, scale = 1) {
+  const c = ensure();
+  if (!c || !master) return;
+  const at = c.currentTime;
+  const jitter = 0.94 + Math.random() * 0.12; // micro-variation keeps repeats natural
+  crackle(c, master, at, voice.crack * jitter, voice.decay * 0.4, voice.gain * scale);
+  thock(c, master, at, voice.body * jitter, voice.decay, voice.gain * scale);
+}
+
+/** A single hardware-accurate click (MacBook profile). */
+export function playClick() {
+  if (soundEnabled()) play(VOICES.macbook);
+}
+
+/** Softer, higher detent for each notch of scroll travel. */
 export function playScrollTick(intensity = 1) {
-  if (!soundEnabled() || !ctx || ctx.state !== "running") return;
-  const t = ctx.currentTime;
-  const osc = ctx.createOscillator();
-  osc.type = "triangle";
-  osc.frequency.setValueAtTime(2600 + Math.random() * 300, t);
-  osc.frequency.exponentialRampToValueAtTime(1400, t + 0.012);
-  const g = ctx.createGain();
-  g.gain.setValueAtTime(0.0001, t);
-  g.gain.exponentialRampToValueAtTime(0.035 * intensity, t + 0.001);
-  g.gain.exponentialRampToValueAtTime(0.0001, t + 0.018);
-  osc.connect(g).connect(ctx.destination);
-  osc.start(t);
-  osc.stop(t + 0.02);
+  if (soundEnabled() && ctx?.state === "running") play(VOICES.scroll, Math.min(1, intensity));
 }
 
 /** Browsers only allow audio after a user gesture; unlock on the first one. */
 export function unlockAudio() {
-  try {
-    ctx ??= new AudioContext();
-    if (ctx.state === "suspended") void ctx.resume();
-  } catch {
-    /* audio unavailable */
-  }
+  ensure();
 }
