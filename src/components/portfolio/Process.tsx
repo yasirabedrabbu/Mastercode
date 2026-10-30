@@ -20,8 +20,12 @@ export default function Process() {
     });
     if (prefersReducedMotion()) return;
     gsap.fromTo(".proc-line", { scaleY: 0 }, { scaleY: 1, ease: "none", scrollTrigger: { trigger: ".proc-list", start: "top 55%", end: "bottom 55%", scrub: true } });
+    // Below md the card fills the whole column, so a lateral slide would drag the
+    // page sideways while it plays; mobile rises into place instead.
+    const wide = window.matchMedia("(min-width: 768px)").matches;
     gsap.utils.toArray<HTMLElement>(".proc-step article").forEach((card) => {
-      gsap.from(card, { autoAlpha: 0, x: 60, rotate: 1.5, duration: 0.9, ease: "power3.out", scrollTrigger: { trigger: card, start: "top 85%", once: true } });
+      const from = wide ? { x: 60, rotate: 1.5 } : { y: 44 };
+      gsap.from(card, { autoAlpha: 0, duration: 0.9, ease: "power3.out", ...from, scrollTrigger: { trigger: card, start: "top 85%", once: true } });
     });
   });
 
