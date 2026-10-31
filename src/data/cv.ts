@@ -15,6 +15,12 @@ export const impact = [
   { value: 20, suffix: "%", label: "Higher task completion in tests" },
 ];
 
+export const principles = [
+  { title: "Clarity", body: "Complex workflows made simple and obvious." },
+  { title: "Trust", body: "Interfaces that feel safe, accessible and consistent." },
+  { title: "Growth", body: "Every decision tied to a business outcome." },
+];
+
 export const experience = [
   {
     role: "Senior Executive, UI/UX Designer",

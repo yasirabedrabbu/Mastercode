@@ -27,10 +27,10 @@ export default function Hero() {
       <HeroScene />
       <div className="relative mx-auto grid w-full max-w-7xl flex-1 items-center gap-14 lg:grid-cols-[1.45fr_1fr]">
         <div>
-          <p className="hero-fade mb-8 inline-flex items-center gap-2.5 rounded-full border border-line-strong bg-bg/70 px-4 py-2 text-sm font-medium text-ink-soft backdrop-blur">
+          <p className="hero-fade mb-8 inline-flex items-center gap-2.5 rounded-full border border-line-strong bg-bg/70 px-4 py-2 text-sm font-medium text-ink backdrop-blur">
             <span className="relative flex h-2 w-2" aria-hidden>
-              <span className="absolute h-full w-full animate-ping rounded-full bg-emerald-600 opacity-60 motion-reduce:animate-none" />
-              <span className="relative h-2 w-2 rounded-full bg-emerald-700" />
+              <span className="absolute h-full w-full animate-ping rounded-full bg-emerald-500 opacity-60 motion-reduce:animate-none" />
+              <span className="relative h-2 w-2 rounded-full bg-emerald-600" />
             </span>
             {profile.role} · Open to remote roles worldwide
           </p>
