@@ -1,6 +1,10 @@
 import Image from "next/image";
+import { HugeiconsIcon } from "@hugeicons/react";
+import { IdeaIcon, Shield01Icon, ChartIncreaseIcon } from "@hugeicons/core-free-icons";
 import { profile, impact, principles } from "@/data/cv";
 import Eyebrow from "./Eyebrow";
+
+const principleIcons = [IdeaIcon, Shield01Icon, ChartIncreaseIcon];
 
 export default function About() {
   return (
@@ -33,19 +37,24 @@ export default function About() {
             <ul className="mt-14 grid gap-4 sm:grid-cols-3">
               {principles.map((p, i) => (
                 <li key={p.title} data-reveal className="rounded-3xl border border-line bg-bg-white p-6">
-                  <span className="font-display text-sm font-bold text-brand">0{i + 1}</span>
+                  <div className="flex items-center justify-between">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-surface text-brand">
+                      <HugeiconsIcon icon={principleIcons[i]} size={20} strokeWidth={2} />
+                    </span>
+                    <span className="font-display text-sm font-bold text-ink-soft">0{i + 1}</span>
+                  </div>
                   <h3 className="mt-6 font-display text-2xl font-bold">{p.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-soft">{p.body}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-ink-soft">{p.body}</p>
                 </li>
               ))}
             </ul>
-            <dl className="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-4">
+            <dl className="mt-14 grid grid-cols-2 gap-4 lg:grid-cols-4">
               {impact.map((s) => (
-                <div key={s.label} data-reveal className="rounded-3xl bg-brand p-6 text-on-brand">
-                  <dd className="font-display text-5xl font-bold tracking-tight">
+                <div key={s.label} data-reveal className="flex flex-col rounded-3xl border border-line bg-surface p-6">
+                  <dt className="order-2 mt-3 text-sm leading-snug text-ink-soft">{s.label}</dt>
+                  <dd className="order-1 font-display text-5xl font-bold tracking-tight text-brand">
                     <span data-count={s.value}>{s.value}</span>{s.suffix}
                   </dd>
-                  <dt className="mt-3 text-sm leading-snug text-on-brand/90">{s.label}</dt>
                 </div>
               ))}
             </dl>

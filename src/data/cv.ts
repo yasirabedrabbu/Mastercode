@@ -11,7 +11,7 @@ export const profile = {
 export const impact = [
   { value: 50, suffix: "+", label: "End-to-end interfaces designed" },
   { value: 30, suffix: "%", label: "Fewer revision cycles via design QA" },
-  { value: 25, suffix: "%", label: "Fewer implementation errors & dev back-and-forth" },
+  { value: 25, suffix: "%", label: "Fewer errors & smoother handoff" },
   { value: 20, suffix: "%", label: "Higher task completion in tests" },
 ];
 
