@@ -6,7 +6,7 @@ import { Search01Icon, DashboardSquare01Icon, PaintBoardIcon, CodeIcon } from "@
 import { gsap, useGSAP, ScrollTrigger } from "@/lib/gsap";
 import { prefersReducedMotion } from "@/lib/ui";
 import { processSteps } from "@/data/process";
-import Eyebrow from "./Eyebrow";
+import Eyebrow from "@/components/ui/Eyebrow";
 
 const processIcons = [Search01Icon, DashboardSquare01Icon, PaintBoardIcon, CodeIcon];
 

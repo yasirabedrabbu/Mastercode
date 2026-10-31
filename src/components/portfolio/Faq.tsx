@@ -5,8 +5,8 @@ import { useState } from "react";
 import { focus } from "@/lib/ui";
 import { profile } from "@/data/cv";
 import { faqs } from "@/data/faq";
-import ArrowUpRight from "./ArrowUpRight";
-import Eyebrow from "./Eyebrow";
+import ArrowUpRight from "@/components/ui/ArrowUpRight";
+import Eyebrow from "@/components/ui/Eyebrow";
 
 export default function Faq() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);

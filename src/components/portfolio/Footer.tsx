@@ -4,7 +4,7 @@ import { Download01Icon } from "@hugeicons/core-free-icons";
 import { focusOnDark } from "@/lib/ui";
 import { profile } from "@/data/cv";
 import { socialLinks } from "@/data/site";
-import ArrowUpRight from "./ArrowUpRight";
+import ArrowUpRight from "@/components/ui/ArrowUpRight";
 
 const CV_HREF = "/Yasir-Abed-Rabbu-CV.pdf";
 

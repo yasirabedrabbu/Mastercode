@@ -1,5 +1,5 @@
 import { experience } from "@/data/cv";
-import Eyebrow from "./Eyebrow";
+import Eyebrow from "@/components/ui/Eyebrow";
 
 export default function Experience() {
   return (

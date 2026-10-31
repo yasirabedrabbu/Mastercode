@@ -1,7 +1,6 @@
-/* Case studies for projects under client NDA. Titles are role-based descriptions
-   rather than client names, and no name, logo, domain or real figure appears
-   anywhere — including alt text and filenames. Outcomes stay qualitative on
-   purpose, because there are no cleared numbers to publish. */
+/* Case studies for projects under client NDA: titles are role-based descriptions,
+   and no client name, logo, domain or real figure appears anywhere — including alt
+   text and filenames. Outcomes stay qualitative, because no numbers are cleared. */
 
 export type WorkDecision = { title: string; why: string };
 export type WorkImage = { src: string; alt: string };

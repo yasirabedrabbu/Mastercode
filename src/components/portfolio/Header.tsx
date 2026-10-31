@@ -9,7 +9,7 @@ import { gsap, useGSAP, ScrollTrigger } from "@/lib/gsap";
 import { focus, prefersReducedMotion, tapAnim } from "@/lib/ui";
 import { profile } from "@/data/cv";
 import { nav } from "@/data/site";
-import MobileNav from "./MobileNav";
+import MobileNav from "@/components/ui/MobileNav";
 
 export default function Header() {
   const navList = useRef<HTMLUListElement>(null);

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { focusOnDark } from "@/lib/ui";
 import { profile } from "@/data/cv";
-import ArrowUpRight from "@/components/portfolio/ArrowUpRight";
+import ArrowUpRight from "@/components/ui/ArrowUpRight";
 
 /** Minimal footer for the standalone case-study pages. */
 export default function WorkFooter() {

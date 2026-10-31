@@ -6,10 +6,10 @@ import { gsap } from "@/lib/gsap";
 import { prefersReducedMotion } from "@/lib/ui";
 import { profile } from "@/data/cv";
 import { socialLinks } from "@/data/site";
-import ArrowUpRight from "./ArrowUpRight";
-import Eyebrow from "./Eyebrow";
-import ContactAside from "./ContactAside";
-import NameParticles from "./NameParticles";
+import ArrowUpRight from "@/components/ui/ArrowUpRight";
+import Eyebrow from "@/components/ui/Eyebrow";
+import ContactAside from "@/components/ui/ContactAside";
+import NameParticles from "@/components/three/NameParticles";
 
 const ways = [
   { label: "Send a mail", hint: "Best for project briefs", icon: Mail01Icon, href: `mailto:${profile.email}`, primary: true },

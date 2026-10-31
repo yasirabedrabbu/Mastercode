@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { playScrollTick, unlockAudio } from "./clickSound";
+import { playScrollTick, unlockAudio } from "@/lib/clickSound";
 
 /** One soft scroll tick every ~90px (throttled) plus audio unlock on the first input. */
 export function useScrollTicks() {

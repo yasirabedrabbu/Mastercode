@@ -4,12 +4,12 @@ import dynamic from "next/dynamic";
 import { gsap } from "@/lib/gsap";
 import { focus, prefersReducedMotion } from "@/lib/ui";
 import { profile, experience } from "@/data/cv";
-import ArrowUpRight from "./ArrowUpRight";
-import HeroPortrait from "./HeroPortrait";
+import ArrowUpRight from "@/components/ui/ArrowUpRight";
+import HeroPortrait from "@/components/ui/HeroPortrait";
 
 /* The WebGL scene is decoration — load it after hydration so `three` stays out
    of the initial bundle. */
-const HeroScene = dynamic(() => import("./HeroScene"), { ssr: false });
+const HeroScene = dynamic(() => import("@/components/three/HeroScene"), { ssr: false });
 
 export default function Hero() {
   return (

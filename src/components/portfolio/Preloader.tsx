@@ -3,8 +3,8 @@
 import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { prefersReducedMotion } from "@/lib/ui";
-import { createPreloaderScene } from "./preloaderScene";
-import PreloaderHud, { SEGMENTS } from "./PreloaderHud";
+import { createPreloaderScene } from "@/components/three/preloaderScene";
+import PreloaderHud, { SEGMENTS } from "@/components/ui/PreloaderHud";
 
 /** Hard cap on the whole intro, so the curtain can never trap the page. */
 const FAILSAFE_MS = 1600;

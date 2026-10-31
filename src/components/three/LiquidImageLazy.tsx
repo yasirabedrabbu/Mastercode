@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 
 /* `Shots` is a server component, so the dynamic import needs a client boundary.
    Loading the water surface lazily keeps `three` out of the initial bundle. */
-const LiquidImage = dynamic(() => import("./LiquidImage"), { ssr: false });
+const LiquidImage = dynamic(() => import("@/components/three/LiquidImage"), { ssr: false });
 
 type Props = { src: string; alt?: string; className?: string };
 

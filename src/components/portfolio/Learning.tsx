@@ -1,7 +1,7 @@
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Mortarboard01Icon, Award01Icon, Certificate01Icon } from "@hugeicons/core-free-icons";
 import { education, certifications } from "@/data/cv";
-import Eyebrow from "./Eyebrow";
+import Eyebrow from "@/components/ui/Eyebrow";
 
 export default function Learning() {
   return (

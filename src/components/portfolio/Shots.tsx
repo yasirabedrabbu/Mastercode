@@ -1,7 +1,7 @@
 import { projects, projectsCta } from "@/data/projects";
-import ArrowUpRight from "./ArrowUpRight";
-import Eyebrow from "./Eyebrow";
-import LiquidImageLazy from "./LiquidImageLazy";
+import ArrowUpRight from "@/components/ui/ArrowUpRight";
+import Eyebrow from "@/components/ui/Eyebrow";
+import LiquidImageLazy from "@/components/three/LiquidImageLazy";
 
 const clean = (s: string) => s.replace(/\p{Extended_Pictographic}|\uFE0F/gu, "").trim();
 

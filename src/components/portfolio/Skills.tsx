@@ -5,9 +5,9 @@ import { PenTool03Icon, UserSearch01Icon, UniversalAccessIcon, AiMagicIcon } fro
 import { gsap, useGSAP } from "@/lib/gsap";
 import { prefersReducedMotion } from "@/lib/ui";
 import { skills } from "@/data/cv";
-import Eyebrow from "./Eyebrow";
-import SkillTab from "./SkillTab";
-import SkillPanel from "./SkillPanel";
+import Eyebrow from "@/components/ui/Eyebrow";
+import SkillTab from "@/components/ui/SkillTab";
+import SkillPanel from "@/components/ui/SkillPanel";
 
 const skillIcons = [PenTool03Icon, UserSearch01Icon, UniversalAccessIcon, AiMagicIcon];
 

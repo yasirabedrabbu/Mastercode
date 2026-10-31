@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { Work } from "@/data/work";
-import Eyebrow from "@/components/portfolio/Eyebrow";
+import Eyebrow from "@/components/ui/Eyebrow";
 
 const metaLabel = "text-xs font-semibold uppercase tracking-[0.16em] text-ink-muted";
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useLiquidImage } from "./useLiquidImage";
+import { useLiquidImage } from "@/hooks/useLiquidImage";
 
 type LiquidImageProps = {
   src: string;

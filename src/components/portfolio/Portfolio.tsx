@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { useScrollTicks } from "@/lib/useScrollTicks";
+import { useScrollTicks } from "@/hooks/useScrollTicks";
 import Header from "./Header";
 import Hero from "./Hero";
 import About from "./About";
@@ -15,7 +15,7 @@ import Faq from "./Faq";
 import Contact from "./Contact";
 import Footer from "./Footer";
 import Preloader from "./Preloader";
-import { usePortfolioFx } from "./usePortfolioFx";
+import { usePortfolioFx } from "@/hooks/usePortfolioFx";
 
 export default function Portfolio() {
   const root = useRef<HTMLDivElement>(null);

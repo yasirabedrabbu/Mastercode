@@ -2,8 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import { isLowPower, observeOnScreen } from "@/lib/perf";
-import { createLiquidScene } from "./liquidScene";
-import { createPointerTrail } from "./liquidPointer";
+import { createLiquidScene } from "@/components/three/liquidScene";
+import { createPointerTrail } from "@/components/three/liquidPointer";
 
 /** Frame-rate independent ease: fraction of the remaining gap to close this frame. */
 const ease = (dt: number, rate: number) => 1 - Math.exp(-dt * rate);

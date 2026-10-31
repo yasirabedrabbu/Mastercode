@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Work } from "@/data/work";
 import { focus, focusOnDark } from "@/lib/ui";
 import { profile } from "@/data/cv";
-import ArrowUpRight from "@/components/portfolio/ArrowUpRight";
+import ArrowUpRight from "@/components/ui/ArrowUpRight";
 
 /** Closing NDA call-to-action with a prefilled walkthrough request. */
 export function WorkCta({ item }: { item: Work }) {

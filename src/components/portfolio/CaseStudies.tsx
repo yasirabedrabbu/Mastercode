@@ -1,6 +1,6 @@
 import { work } from "@/data/work";
-import Eyebrow from "./Eyebrow";
-import WorkCard from "./WorkCard";
+import Eyebrow from "@/components/ui/Eyebrow";
+import WorkCard from "@/components/ui/WorkCard";
 
 /** Case-study grid. Every card links to an anonymized detail page under NDA. */
 export default function CaseStudies() {

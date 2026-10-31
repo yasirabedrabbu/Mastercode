@@ -2,7 +2,7 @@ import Image from "next/image";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { IdeaIcon, Shield01Icon, ChartIncreaseIcon } from "@hugeicons/core-free-icons";
 import { profile, impact, principles } from "@/data/cv";
-import Eyebrow from "./Eyebrow";
+import Eyebrow from "@/components/ui/Eyebrow";
 
 const principleIcons = [IdeaIcon, Shield01Icon, ChartIncreaseIcon];
 
