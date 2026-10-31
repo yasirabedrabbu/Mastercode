@@ -14,7 +14,7 @@ export default function Experience() {
           <span aria-hidden className="timeline-progress absolute -left-px top-0 h-full w-0.5 origin-top bg-accent" />
           {experience.map((job) => (
             <li key={job.role} data-reveal className="relative pb-16 last:pb-0">
-              <span aria-hidden className="absolute -left-[2.85rem] top-2 h-3 w-3 rounded-full bg-on-brand ring-8 ring-bg-deep" />
+              <span aria-hidden className="exp-dot absolute -left-[2.85rem] top-2 h-3 w-3 rounded-full bg-on-brand ring-8 ring-bg-deep" />
               <p className="text-sm font-semibold uppercase tracking-widest text-on-brand/80">{job.period}</p>
               <h3 className="mt-3 font-display text-3xl font-bold">{job.role}</h3>
               <p className="mt-1 text-on-brand/85">{job.company}, Dhaka</p>

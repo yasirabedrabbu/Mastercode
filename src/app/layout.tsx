@@ -46,7 +46,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={fontVariables} suppressHydrationWarning>
-      <body suppressHydrationWarning>
+      <body>
         {/* Opts the intro curtain in on the first visit of a session. A plain inline
             script (not `next/script`) so it runs while the page is parsing — before
             anything paints — and is skipped entirely for reduced motion or blocked

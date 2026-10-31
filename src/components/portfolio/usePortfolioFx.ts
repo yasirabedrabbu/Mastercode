@@ -39,6 +39,8 @@ export function usePortfolioFx(root: RefObject<HTMLDivElement | null>) {
         });
 
         gsap.fromTo(".timeline-progress", { scaleY: 0 }, { scaleY: 1, ease: "none", scrollTrigger: { trigger: "#experience", start: "top 60%", end: "bottom 70%", scrub: true } });
+        // Light each marker up in step with the line as it passes.
+        gsap.fromTo(".exp-dot", { scale: 0.5, opacity: 0.35 }, { scale: 1, opacity: 1, stagger: 0.5, ease: "none", scrollTrigger: { trigger: "#experience", start: "top 60%", end: "bottom 70%", scrub: true } });
       });
 
       // The sticky shot-stack only exists at md+, so gate its scrub effects to the same breakpoint.

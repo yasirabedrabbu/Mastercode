@@ -1,5 +1,6 @@
 import type { ComponentProps } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
+import { tapAnim } from "@/lib/ui";
 
 type SkillIcon = ComponentProps<typeof HugeiconsIcon>["icon"];
 
@@ -23,7 +24,7 @@ export default function SkillTab({ group, count, index, icon, selected, roving, 
       aria-selected={selected}
       aria-controls={`skill-panel-${index}`}
       tabIndex={roving ? 0 : -1}
-      onClick={onSelect}
+      onClick={(e) => { tapAnim(e.currentTarget); onSelect(); }}
       className={`group flex items-center gap-5 rounded-3xl border p-5 text-left transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-on-brand ${
         selected ? "border-on-brand bg-on-brand text-ink" : "border-hair-light hover:border-on-brand/50"
       }`}

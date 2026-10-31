@@ -6,7 +6,6 @@ import { profile } from "@/data/cv";
 import { socialLinks } from "@/data/site";
 import ArrowUpRight from "./ArrowUpRight";
 
-/* TODO(yasir): drop the real PDF at public/Yasir-Abed-Rabbu-CV.pdf — the button 404s until then. */
 const CV_HREF = "/Yasir-Abed-Rabbu-CV.pdf";
 
 const nav = [
