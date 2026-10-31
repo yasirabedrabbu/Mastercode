@@ -1,6 +1,7 @@
 import { projects, projectsCta } from "@/data/projects";
+import ArrowUpRight from "./ArrowUpRight";
 import Eyebrow from "./Eyebrow";
-import LiquidImage from "./LiquidImage";
+import LiquidImageLazy from "./LiquidImageLazy";
 
 const clean = (s: string) => s.replace(/\p{Extended_Pictographic}|\uFE0F/gu, "").trim();
 
@@ -18,7 +19,7 @@ export default function Shots() {
           <div className="flex flex-col gap-6 md:items-end md:text-right">
             <p className="max-w-sm text-on-brand/85">Concept shots where I push typography, layout and motion beyond client briefs.</p>
             <a href={projectsCta.href} target="_blank" rel="noreferrer" className="group inline-flex w-fit items-center gap-3 rounded-full border border-on-brand/40 px-6 py-3 text-sm font-semibold transition hover:bg-on-brand hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-on-brand">
-              All shots on Dribbble <span aria-hidden className="transition-transform group-hover:translate-x-1">↗</span>
+              All shots on Dribbble <ArrowUpRight size={18} className="transition-transform group-hover:translate-x-1" />
             </a>
           </div>
         </div>
@@ -41,11 +42,11 @@ export default function Shots() {
                     </div>
                     <span className="inline-flex w-fit items-center gap-3 font-semibold text-white">
                       View shot
-                      <span aria-hidden className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-ink transition-transform duration-500 group-hover:rotate-45">↗</span>
+                      <span aria-hidden className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-ink transition-transform duration-500 group-hover:rotate-45"><ArrowUpRight size={20} /></span>
                     </span>
                   </div>
                   <div className="relative aspect-[4/3] overflow-hidden md:aspect-auto md:min-h-[32rem]">
-                    <LiquidImage src={p.image} />
+                    <LiquidImageLazy src={p.image} />
                   </div>
                 </a>
                 <span aria-hidden className="shot-dim pointer-events-none absolute inset-0 bg-black opacity-0" />

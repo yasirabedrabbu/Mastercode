@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { profile } from "@/data/cv";
 
 /** Segments in the progress readout; the timeline staggers them at the same rate. */
@@ -26,7 +27,7 @@ export default function PreloaderHud() {
         </div>
 
         <div className="flex flex-col items-center">
-          <span className="pre-enter flex h-14 w-14 items-center justify-center rounded-2xl bg-brand font-display text-xl font-bold">YR</span>
+          <Image src="/favicon.svg" alt="" aria-hidden width={56} height={56} className="pre-enter h-14 w-14 rounded-2xl" />
           <p className="pre-enter mt-8 flex items-start font-display font-bold leading-[0.78] tracking-[-0.06em]">
             <span className="pre-count tabular-nums text-[24vw] md:text-[13rem]">000</span>
             <span className="mt-2 text-2xl text-accent md:text-3xl">%</span>

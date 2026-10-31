@@ -5,6 +5,7 @@ import { useState } from "react";
 import { focus } from "@/lib/ui";
 import { profile } from "@/data/cv";
 import { faqs } from "@/data/faq";
+import ArrowUpRight from "./ArrowUpRight";
 import Eyebrow from "./Eyebrow";
 
 export default function Faq() {
@@ -23,7 +24,7 @@ export default function Faq() {
             </div>
             <div>
               <p className="font-semibold">Still have a question?</p>
-              <a href={`mailto:${profile.email}`} className={`text-sm font-semibold text-brand underline-offset-4 hover:underline ${focus}`}>Ask me directly →</a>
+              <a href={`mailto:${profile.email}`} className={`inline-flex items-center gap-1 text-sm font-semibold text-brand underline-offset-4 hover:underline ${focus}`}>Ask me directly <ArrowUpRight size={16} /></a>
             </div>
           </div>
         </div>

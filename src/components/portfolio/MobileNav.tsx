@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Menu01Icon, Cancel01Icon } from "@hugeicons/core-free-icons";
 import { playClick } from "@/lib/clickSound";
-import { focus } from "@/lib/ui";
+import { focus, focusOnDark } from "@/lib/ui";
 import { profile } from "@/data/cv";
 import { nav } from "@/data/site";
 
@@ -73,7 +73,7 @@ export default function MobileNav() {
                   release();
                   setOpen(false);
                 }}
-                className={`flex items-baseline justify-between py-5 font-display text-3xl font-bold tracking-tight ${focus}`}
+                className={`flex items-baseline justify-between py-5 font-display text-3xl font-bold tracking-tight ${focusOnDark}`}
               >
                 {label}
                 <span className="font-display text-xs font-bold tabular-nums text-on-brand/40">{String(i + 1).padStart(2, "0")}</span>
@@ -88,7 +88,7 @@ export default function MobileNav() {
             release();
             setOpen(false);
           }}
-          className={`mt-auto flex items-center justify-center rounded-full bg-brand px-6 py-4 text-sm font-semibold ${focus}`}
+          className={`mt-auto flex items-center justify-center rounded-full bg-brand px-6 py-4 text-sm font-semibold ${focusOnDark}`}
         >
           Hire me
         </a>

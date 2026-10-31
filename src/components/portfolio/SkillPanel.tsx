@@ -24,7 +24,7 @@ export default function SkillPanel({ group, items, index, icon, active }: Props)
       aria-labelledby={`skill-tab-${index}`}
       tabIndex={0}
       hidden={!active}
-      className="flex flex-col justify-between rounded-[2rem] bg-bg p-8 text-ink md:p-12"
+      className="flex flex-col justify-between rounded-[2rem] bg-bg p-8 text-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand md:p-12"
     >
       <div className="flex items-start justify-between gap-6">
         <div>

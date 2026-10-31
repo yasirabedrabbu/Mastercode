@@ -25,9 +25,6 @@ export function usePortfolioFx(root: RefObject<HTMLDivElement | null>) {
         gsap.fromTo(".about-word", { opacity: 0.15 }, { opacity: 1, stagger: 0.05, ease: "none", scrollTrigger: { trigger: ".about-words", start: "top 80%", end: "bottom 45%", scrub: true } });
         gsap.fromTo(".contact-img", { scale: 1.2 }, { scale: 1, ease: "none", scrollTrigger: { trigger: ".contact-img", start: "top bottom", end: "bottom top", scrub: true } });
         gsap.from(".cert-row", { autoAlpha: 0, x: 30, duration: 0.7, stagger: 0.1, ease: "power3.out", scrollTrigger: { trigger: ".cert-row", start: "top 85%", once: true } });
-        gsap.utils.toArray<HTMLElement>(".case-row").forEach((row) => {
-          gsap.from(row, { autoAlpha: 0, y: 40, duration: 0.8, ease: "power3.out", scrollTrigger: { trigger: row, start: "top 85%", once: true } });
-        });
         gsap.from(".contact-giant", { yPercent: 60, ease: "none", scrollTrigger: { trigger: ".contact-giant", start: "top bottom", end: "bottom bottom", scrub: true } });
 
         gsap.utils.toArray<HTMLElement>("[data-count]").forEach((el) => {

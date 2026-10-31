@@ -17,10 +17,10 @@ const VOICES = {
 
 let ctx: AudioContext | null = null;
 let master: GainNode | null = null;
-const KEY = "ui-sound";
+const KEY = "ui-sound"; // opt-in: only an explicit "on" turns sound on
 const listeners = new Set<() => void>();
 
-export const soundEnabled = () => typeof window !== "undefined" && localStorage.getItem(KEY) !== "off";
+export const soundEnabled = () => typeof window !== "undefined" && localStorage.getItem(KEY) === "on";
 
 export const setSoundEnabled = (on: boolean) => {
   localStorage.setItem(KEY, on ? "on" : "off");
@@ -104,7 +104,7 @@ export function playScrollTick(intensity = 1) {
   if (soundEnabled() && ctx?.state === "running") play(VOICES.scroll, Math.min(1, intensity));
 }
 
-/** Browsers only allow audio after a user gesture; unlock on the first one. */
+/** Browsers allow audio only after a gesture; no-op until sound is opted in. */
 export function unlockAudio() {
-  ensure();
+  if (soundEnabled()) ensure();
 }

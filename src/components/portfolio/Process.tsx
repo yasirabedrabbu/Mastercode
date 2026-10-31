@@ -60,7 +60,7 @@ export default function Process() {
           <div aria-hidden className="mt-8 hidden gap-2 lg:flex">
             {processSteps.map((s, i) => (
               <span key={s.id} className="h-1.5 flex-1 overflow-hidden rounded-full bg-line">
-                <span className={`block h-full origin-left rounded-full bg-brand transition-transform duration-700 ease-out ${i <= activeStep ? "scale-x-100" : "scale-x-0"}`} />
+                <span className={`block h-full origin-left rounded-full bg-brand transition-transform duration-700 ease-out motion-reduce:transition-none ${i <= activeStep ? "scale-x-100" : "scale-x-0"}`} />
               </span>
             ))}
           </div>
@@ -75,14 +75,14 @@ export default function Process() {
               <li key={s.id} className="proc-step relative pb-8 pl-20 last:pb-0">
                 <span
                   aria-hidden
-                  className={`absolute left-0 top-8 flex h-14 w-14 items-center justify-center rounded-2xl border transition-all duration-500 ${
+                  className={`absolute left-0 top-8 flex h-14 w-14 items-center justify-center rounded-2xl border transition-all duration-500 motion-reduce:transition-none ${
                     on ? "scale-110 border-brand bg-brand text-on-brand" : i < activeStep ? "border-brand bg-bg-white text-brand" : "border-line bg-bg-white text-ink-soft"
                   }`}
                 >
-                  <HugeiconsIcon icon={processIcons[i]} size={24} strokeWidth={1.8} className={`transition-transform duration-700 ${on ? "rotate-[360deg]" : ""}`} />
+                  <HugeiconsIcon icon={processIcons[i]} size={24} strokeWidth={1.8} className={`transition-transform duration-700 motion-reduce:transition-none ${on ? "rotate-[360deg]" : ""}`} />
                 </span>
                 <article
-                  className={`rounded-[2rem] border p-8 transition-all duration-500 md:p-10 ${
+                  className={`rounded-[2rem] border p-8 transition-all duration-500 motion-reduce:transition-none md:p-10 ${
                     on ? "border-brand bg-bg-white lg:-translate-y-1" : "border-line bg-bg/60"
                   }`}
                 >

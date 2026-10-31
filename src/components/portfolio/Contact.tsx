@@ -1,11 +1,12 @@
 "use client";
 
 import { HugeiconsIcon } from "@hugeicons/react";
-import { Mail01Icon, Call02Icon, WhatsappIcon, ArrowUpRight01Icon, Linkedin01Icon, DribbbleIcon, BehanceIcon, NewTwitterIcon } from "@hugeicons/core-free-icons";
+import { Mail01Icon, Call02Icon, WhatsappIcon, Linkedin01Icon, DribbbleIcon, BehanceIcon, NewTwitterIcon } from "@hugeicons/core-free-icons";
 import { gsap } from "@/lib/gsap";
 import { prefersReducedMotion } from "@/lib/ui";
 import { profile } from "@/data/cv";
 import { socialLinks } from "@/data/site";
+import ArrowUpRight from "./ArrowUpRight";
 import Eyebrow from "./Eyebrow";
 import ContactAside from "./ContactAside";
 import NameParticles from "./NameParticles";
@@ -49,7 +50,10 @@ export default function Contact() {
                       const r = e.currentTarget.getBoundingClientRect();
                       gsap.to(e.currentTarget, { x: (e.clientX - r.left - r.width / 2) * 0.08, y: (e.clientY - r.top - r.height / 2) * 0.12, duration: 0.4 });
                     }}
-                    onPointerLeave={(e) => gsap.to(e.currentTarget, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1,0.4)" })}
+                    onPointerLeave={(e) => {
+                      if (prefersReducedMotion()) return;
+                      gsap.to(e.currentTarget, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1,0.4)" });
+                    }}
                     className={`group flex h-full flex-col justify-between gap-10 rounded-3xl border p-6 transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-on-brand ${
                       a.primary ? "border-brand bg-brand hover:bg-cta" : "border-white/15 hover:border-on-brand hover:bg-on-brand hover:text-ink"
                     }`}
@@ -58,7 +62,7 @@ export default function Contact() {
                       <span className={`flex h-12 w-12 items-center justify-center rounded-2xl ${a.primary ? "bg-on-brand text-brand" : "bg-white/10 group-hover:bg-ink group-hover:text-on-brand"}`}>
                         <HugeiconsIcon icon={a.icon} size={24} strokeWidth={1.8} aria-hidden />
                       </span>
-                      <HugeiconsIcon icon={ArrowUpRight01Icon} size={22} aria-hidden className="transition-transform duration-300 group-hover:rotate-45" />
+                      <ArrowUpRight size={22} className="transition-transform duration-300 group-hover:rotate-45" />
                     </span>
                     <span>
                       <span className="block font-display text-2xl font-bold">{a.label}</span>
