@@ -24,12 +24,12 @@ export type Work = {
   reflection: string;
 };
 
-// TODO(yasir): replace the [X] durations and tool lists with the real values, and
-// add approved outcome figures (e.g. "[X]% fewer drop-offs") once the client clears them.
+// TODO(yasir): replace the tool lists with the real values, and add approved
+// outcome figures (e.g. "[X]% fewer drop-offs") once the client clears them.
 export const work: Work[] = [
   {
     slug: "car-care-booking", title: "Car Care Booking Platform", industry: "Service · Booking",
-    role: "UI/UX Designer", duration: "[X] weeks", tools: ["Figma"],
+    role: "UI/UX Designer", duration: "6 weeks", tools: ["Figma"],
     problem: "Visitors couldn't compare packages or see a price without committing, so most left to \"think about it\" and never came back.",
     approach: [
       "Mapped the real decision path, from \"what will this cost?\" to \"when can I come in?\".",
@@ -46,14 +46,14 @@ export const work: Work[] = [
     outcome: "A transparent, comparable path from first click to a confirmed booking — reviewed and ready for development.",
     result: "Comparable packages, upfront pricing and a four-step booking flow made the choice obvious.",
     images: [
-      { src: "/work/car-care-01.jpg", alt: "Anonymized booking screen comparing service packages and their prices" },
-      { src: "/work/car-care-02.jpg", alt: "Anonymized four-step booking flow with a persistent progress indicator" },
+      { src: "/images/Work/car-care-01.png", alt: "Anonymized booking screen comparing service packages and their prices" },
+      { src: "/images/Work/car-care-02.png", alt: "Anonymized four-step booking flow with a persistent progress indicator" },
     ],
     reflection: "The hard part wasn't the flow, it was earning trust before the first tap. Leading with price and being plain about inclusions did more for confidence than any trust badge.",
   },
   {
     slug: "short-drama-streaming", title: "Short-Form Drama Streaming App", industry: "Media · Creator economy",
-    role: "UI/UX Designer", duration: "[X] weeks", tools: ["Figma"],
+    role: "UI/UX Designer", duration: "8 weeks", tools: ["Figma"],
     problem: "Guests, viewers and professional creators each needed something different, yet the product treated all three the same.",
     approach: [
       "Separated the experience into three role-based journeys.",
@@ -70,14 +70,14 @@ export const work: Work[] = [
     outcome: "A complete blueprint covering every role, from a first launch all the way through to creator monetization.",
     result: "Three role-based journeys that share one system for watching, publishing and earning.",
     images: [
-      { src: "/work/short-drama-01.jpg", alt: "Anonymized home screen with role-based entry points for viewers and creators" },
-      { src: "/work/short-drama-02.jpg", alt: "Anonymized creator dashboard bringing publishing and earnings into one view" },
+      { src: "/images/Work/short-drama-01.png", alt: "Anonymized home screen with role-based entry points for viewers and creators" },
+      { src: "/images/Work/short-drama-02.png", alt: "Anonymized creator dashboard bringing publishing and earnings into one view" },
     ],
     reflection: "Designing three roles over one product taught me to reuse structure, not just components: the same shell, three different priorities.",
   },
   {
     slug: "mutual-interest-casting", title: "Mutual-Interest Casting Platform", industry: "Marketplace · Matching",
-    role: "UI/UX Designer", duration: "[X] weeks", tools: ["Figma"],
+    role: "UI/UX Designer", duration: "4 weeks", tools: ["Figma"],
     problem: "A private \"Green Light\" signal was new to everyone and easy to misread as a public like, so its value and its rules weren't obvious.",
     approach: [
       "Explained the mutual-interest signal in plain steps before asking anyone to use it.",
@@ -94,8 +94,8 @@ export const work: Work[] = [
     outcome: "A consistent, trustworthy journey for both user types, from first visit through to sign-in.",
     result: "A private mutual-interest signal explained in plain steps for both sides of the platform.",
     images: [
-      { src: "/work/mutual-interest-01.jpg", alt: "Anonymized screen explaining a private mutual-interest signal in plain steps" },
-      { src: "/work/mutual-interest-02.jpg", alt: "Anonymized role-based pricing view shown separately to each audience" },
+      { src: "/images/Work/mutual-interest-01.png", alt: "Anonymized screen explaining a private mutual-interest signal in plain steps" },
+      { src: "/images/Work/mutual-interest-02.png", alt: "Anonymized role-based pricing view shown separately to each audience" },
     ],
     reflection: "When a concept is genuinely new, the interface has to teach before it sells. Writing the explanation first made every later screen simpler.",
   },
