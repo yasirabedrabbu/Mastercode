@@ -72,10 +72,18 @@ export default function Skills() {
             </h2>
           </div>
           <p className="max-w-sm text-on-brand/85 md:justify-self-end">Four disciplines I combine on every project, from the first research question to the final handoff.</p>
-        </div>
+        </div>  
 
         <div data-reveal className="mt-16 grid gap-6 lg:grid-cols-[0.9fr_1.6fr]">
-          <div role="tablist" aria-label="Skill categories" aria-orientation="vertical" className="flex flex-col gap-2" onKeyDown={onKeyDown}>
+          {/* Horizontal swipeable strip on mobile, vertical card rail from `lg`.
+              No aria-orientation: it would be wrong at one of the two widths, and
+              arrow keys work on both axes anyway. */}
+          <div 
+            role="tablist"
+            aria-label="Skill categories"
+            className="-mx-4 flex snap-x snap-mandatory gap-2 overflow-x-auto overscroll-x-contain px-4 pb-1 [scrollbar-width:none] motion-reduce:snap-none md:-mx-8 md:px-8 lg:mx-0 lg:flex-col lg:overflow-visible lg:px-0 [&::-webkit-scrollbar]:hidden"
+            onKeyDown={onKeyDown}
+          >
             {skills.map((g, i) => (
               <SkillTab
                 key={g.group}
