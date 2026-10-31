@@ -8,7 +8,7 @@ Single-page portfolio for Yasir Abed Rabbu, UI/UX designer, built as a staticall
 - **Tailwind CSS v4**, with design tokens in `src/styles/theme-*.css` imported from `src/app/globals.css`
 - **GSAP + ScrollTrigger** (via `@gsap/react`) and **Lenis** for scroll-driven motion
 - **Three.js** for the hero wireframe scene and the particle name in the contact section
-- Fonts: Manrope (Google) plus locally hosted Cabinet Grotesk and Satoshi, wired up in `src/lib/fonts.ts`
+- Fonts: Manrope (Google) plus locally hosted Cabinet Grotesk, wired up in `src/lib/fonts.ts`
 
 ## Structure
 

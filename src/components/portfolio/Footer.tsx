@@ -17,7 +17,7 @@ const nav = [
   ["Contact", "#contact"],
 ];
 
-const heading = "font-display text-xs font-bold uppercase tracking-[0.25em] text-on-brand/50";
+const heading = "font-display text-xs font-bold uppercase tracking-[0.25em] text-on-brand/70";
 
 export default function Footer() {
   return (

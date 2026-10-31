@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { cappedDpr } from "@/lib/perf";
 
 type P = { x: number; y: number; hx: number; hy: number; vx: number; vy: number };
 
@@ -13,7 +14,7 @@ export default function NameParticles({ text }: { text: string }) {
     const ctx = canvas?.getContext("2d");
     if (!canvas || !ctx) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const dpr = Math.min(window.devicePixelRatio, 2);
+    const dpr = cappedDpr(2);
     let particles: P[] = [];
     let raf = 0;
     const mouse = { x: -9999, y: -9999 };

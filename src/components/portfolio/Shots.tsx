@@ -7,7 +7,7 @@ const clean = (s: string) => s.replace(/\p{Extended_Pictographic}|\uFE0F/gu, "")
 
 export default function Shots() {
   return (
-    <section aria-labelledby="shots-title" className="relative bg-bg-slate px-4 py-28 text-on-brand md:px-8 md:py-36">
+    <section aria-labelledby="shots-title" className="relative bg-bg-deep px-4 py-28 text-on-brand md:px-8 md:py-36">
       <div className="mx-auto max-w-7xl">
         <div data-reveal className="mb-20 grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-end">
           <div>
@@ -27,7 +27,7 @@ export default function Shots() {
         <ol className="flex flex-col gap-6 md:gap-[12vh]">
           {projects.map((p, i) => (
             <li key={p.slug} className="shot-card md:sticky" style={{ top: `${6 + i * 2}rem` }}>
-              <article className="shot-inner relative origin-top overflow-hidden rounded-[2rem] border border-white/10 bg-[#2a2a30] transition-colors duration-500 will-change-transform hover:border-white/30 active:border-white/45">
+              <article className="shot-inner relative origin-top overflow-hidden rounded-[2rem] border border-white/10 bg-surface-dark transition-colors duration-500 will-change-transform hover:border-white/30 active:border-white/45">
                 <a href={p.href} target="_blank" rel="noreferrer" aria-label={`${clean(p.title)} on Dribbble (opens in new tab)`} className="group grid md:grid-cols-[1fr_1.6fr] focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-on-brand">
                   <div className="flex flex-col justify-between gap-10 p-8 md:p-12">
                     <div className="flex items-center justify-between text-sm font-semibold text-on-brand/75">

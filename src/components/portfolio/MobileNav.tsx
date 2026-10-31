@@ -57,7 +57,7 @@ export default function MobileNav() {
         aria-expanded={open}
         aria-controls="mobile-nav"
         aria-label={open ? "Close menu" : "Open menu"}
-        className={`flex h-10 w-10 items-center justify-center rounded-full border border-hair text-ink transition-colors hover:border-brand hover:text-brand ${focus}`}
+        className={`flex h-11 w-11 items-center justify-center rounded-full border border-hair text-ink transition-colors hover:border-brand hover:text-brand ${focus}`}
       >
         <HugeiconsIcon icon={open ? Cancel01Icon : Menu01Icon} size={20} aria-hidden />
       </button>
@@ -88,7 +88,7 @@ export default function MobileNav() {
                     className={`flex items-baseline justify-between py-5 font-display text-3xl font-bold tracking-tight ${focusOnDark}`}
                   >
                     {label}
-                    <span className="font-display text-xs font-bold tabular-nums text-on-brand/40">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="font-display text-xs font-bold tabular-nums text-on-brand/60">{String(i + 1).padStart(2, "0")}</span>
                   </a>
                 </li>
               ))}

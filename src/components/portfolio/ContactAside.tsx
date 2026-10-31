@@ -4,7 +4,7 @@ import { Location01Icon, Clock01Icon } from "@hugeicons/core-free-icons";
 
 export default function ContactAside() {
   return (
-    <div data-reveal className="relative min-h-[28rem] overflow-hidden rounded-[2.5rem] bg-bg-deep">
+    <div data-reveal className="relative min-h-[28rem] overflow-hidden rounded-[2rem] bg-bg-deep">
       <Image src="/images/contact-workspace.jpg" alt="A calm workspace with a laptop by the window" fill sizes="(min-width:1024px) 40vw, 100vw" className="contact-img object-cover" />
       <div className="absolute left-5 top-5 inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-sm font-medium text-on-brand">
         <span className="h-2 w-2 rounded-full bg-emerald-500" aria-hidden />

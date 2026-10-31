@@ -5,13 +5,13 @@ export const profile = {
   email: "yasirabedrabbu@gmail.com",
   phone: "+880 1771-166569",
   summary:
-    "I bridge business goals and user needs through thoughtful, intuitive design. Working across SaaS, healthcare and fintech, I turn complex workflows into simple experiences that reduce friction, earn trust and support growth.",
+    "I bridge business goals and user needs through thoughtful, intuitive design. Working across SaaS, healthcare and fintech, I turn complex workflows into simple experiences that reduce friction, earn trust and support growth. My process combines user research, wireframing, prototyping, design systems and developer handoff.",
 };
 
 export const impact = [
   { value: 50, suffix: "+", label: "End-to-end interfaces designed" },
   { value: 30, suffix: "%", label: "Fewer revision cycles via design QA" },
-  { value: 25, suffix: "%", label: "Fewer implementation errors" },
+  { value: 25, suffix: "%", label: "Fewer implementation errors & dev back-and-forth" },
   { value: 20, suffix: "%", label: "Higher task completion in tests" },
 ];
 
@@ -24,6 +24,7 @@ export const experience = [
       "Lead a team of UI designers, setting direction and reviewing every screen for hierarchy, spacing, typography, contrast and grid alignment.",
       "Lead design delivery across product, development and QA teams in Agile sprints, aligning scope, timelines and priorities.",
       "Established a design QA checklist covering consistency, accessibility and responsive behaviour, cutting revision cycles by 30%.",
+      "Ground design decisions in competitor analysis, secondary research and usability findings, and present them to stakeholders in plain business terms to secure alignment before development.",
       "Define reusable component guidelines and design standards that keep UI consistent across teams.",
     ],
   },
@@ -65,10 +66,10 @@ export const caseStudies = [
 ];
 
 export const skills = [
-  { group: "Design", items: ["Advanced Figma", "Auto layout & variants", "Design tokens", "Prototyping", "Typography", "Data visualization"] },
+  { group: "Design", items: ["Advanced Figma", "Auto layout & variants", "Design tokens", "Prototyping", "Plugins", "Typography", "Colour", "Iconography", "Data visualization"] },
   { group: "UX & Research", items: ["Competitor analysis", "Secondary research", "Wireframing", "Usability testing", "User flows", "Journey mapping", "Agile / Scrum", "Developer handoff"] },
   { group: "Accessibility & Conversion", items: ["Conversion-focused design", "Human-centered thinking", "WCAG 2.2 (contrast, scalable text, keyboard friendly)"] },
-  { group: "AI & Frontend", items: ["v0.dev", "Lovable", "Figma Make", "Tailwind CSS", "React (basic)", "Next.js (basic)"] },
+  { group: "AI & Frontend", items: ["v0.dev", "Lovable", "Figma Make", "Replit", "Tailwind CSS", "React (basic)", "Next.js (basic)"] },
 ];
 
 export const education = {

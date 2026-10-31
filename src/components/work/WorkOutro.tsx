@@ -30,7 +30,7 @@ export function WorkCta({ item }: { item: Work }) {
 
 /** Previous / next case study. */
 export function WorkPager({ prev, next }: { prev?: Work; next?: Work }) {
-  const link = `rounded-[1.75rem] border border-line bg-bg-white p-7 transition-colors hover:border-brand ${focus}`;
+  const link = `rounded-3xl border border-line bg-bg-white p-7 transition-colors hover:border-brand ${focus}`;
   return (
     <nav aria-label="More case studies" className="px-4 pb-24 md:px-8">
       <div className="mx-auto grid max-w-6xl gap-6 border-t border-line pt-10 sm:grid-cols-2">

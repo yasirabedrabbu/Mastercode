@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "../styles/theme-colors.css";
 @import "../styles/theme-typography.css";
-@import "../styles/theme-layout.css";
 @import "../styles/theme-motion.css";
 
 @layer base {

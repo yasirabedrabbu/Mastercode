@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import { gsap } from "@/lib/gsap";
 import { focus, prefersReducedMotion } from "@/lib/ui";
-import { profile } from "@/data/cv";
+import { profile, experience } from "@/data/cv";
 import ArrowUpRight from "./ArrowUpRight";
 import HeroPortrait from "./HeroPortrait";
 
@@ -52,7 +52,7 @@ export default function Hero() {
             ))}
           </h1>
           <p className="hero-fade mt-8 max-w-xl text-lg leading-relaxed text-ink-soft md:text-xl">
-            I&apos;m <strong className="font-semibold text-ink">{profile.name}</strong>, a UI/UX designer at Softvence Delta turning complex SaaS, healthcare and fintech workflows into products people trust.
+            I&apos;m <strong className="font-semibold text-ink">{profile.name}</strong>, a UI/UX designer at {experience[0].company} turning complex SaaS, healthcare and fintech workflows into products people trust.
           </p>
           <div className="hero-fade mt-10 flex flex-wrap items-center gap-4">
             <a href="#work" className={`group inline-flex items-center gap-3 rounded-full bg-ink px-7 py-4 font-semibold text-on-brand transition hover:bg-brand ${focus}`}>

@@ -4,7 +4,7 @@ import type { WorkDecision, WorkImage } from "@/data/work";
 const section = "px-4 py-14 md:px-8 md:py-16";
 const heading = "font-display text-3xl font-bold tracking-tight md:text-5xl";
 const body = "mt-6 max-w-3xl text-lg leading-relaxed text-ink-soft";
-const card = "rounded-[1.75rem] border border-line bg-bg-white p-7";
+const card = "rounded-3xl border border-line bg-bg-white p-7";
 const ordinal = "font-display text-sm font-bold tabular-nums text-brand";
 
 /** Single-column prose block — used for the problem, impact and reflection. */
@@ -79,7 +79,7 @@ export function WorkGallery({ solution, images }: { solution: string; images: Wo
         <p className={body}>{solution}</p>
         <div className="mt-10 grid gap-6 sm:grid-cols-2">
           {images.map((img) => (
-            <figure key={img.src} className="overflow-hidden rounded-[1.75rem] border border-line bg-bg-white">
+            <figure key={img.src} className="overflow-hidden rounded-3xl border border-line bg-bg-white">
               <Image src={img.src} alt={img.alt} width={1200} height={900} sizes="(min-width: 640px) 50vw, 100vw" className="h-auto w-full" />
             </figure>
           ))}

@@ -39,14 +39,14 @@ export default function HeroPortrait() {
             flipped ? "[transform:rotateY(180deg)]" : ""
           }`}
         >
-          <div aria-hidden={flipped} className="absolute inset-0 overflow-hidden rounded-[2.5rem] [backface-visibility:hidden]">
+          <div aria-hidden={flipped} className="absolute inset-0 overflow-hidden rounded-[2rem] [backface-visibility:hidden]">
             <Image src="/images/profile.png" alt={`Portrait of ${profile.name}`} fill priority sizes="(min-width:1024px) 38vw, 100vw" className="scale-110 object-cover object-top" />
           </div>
 
           <div
             aria-hidden={!flipped}
             inert={!flipped}
-            className="absolute inset-0 flex flex-col justify-between overflow-hidden rounded-[2.5rem] bg-brand p-7 text-on-brand [backface-visibility:hidden] [transform:rotateY(180deg)]"
+            className="absolute inset-0 flex flex-col justify-between overflow-hidden rounded-[2rem] bg-brand p-7 text-on-brand [backface-visibility:hidden] [transform:rotateY(180deg)]"
           >
             <div>
               <p className="font-display text-xs font-bold uppercase tracking-[0.25em] text-accent">Get in touch</p>
@@ -88,7 +88,7 @@ export default function HeroPortrait() {
             inert={flipped}
             aria-pressed={flipped}
             aria-label={`Show contact details for ${profile.name}`}
-            className={`absolute inset-0 rounded-[2.5rem] [backface-visibility:hidden] ${focus}`}
+            className={`absolute inset-0 rounded-[2rem] [backface-visibility:hidden] ${focus}`}
           >
             <span className="absolute bottom-5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-ink/85 px-4 py-2 text-xs font-semibold text-on-brand">Tap to flip</span>
           </button>

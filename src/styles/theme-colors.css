@@ -13,11 +13,11 @@
   --color-bg: #f6efe6;            /* Cream */
   --color-bg-white: #fffbf6;
   --color-bg-deep: #1f1f24;       /* Secondary — Charcoal */
-  --color-bg-slate: #1f1f24;
 
   /* ---- Surfaces ---- */
   --color-surface: #ece2d4;
   --color-surface-hover: #e4d8c7;
+  --color-surface-dark: #2a2a30;  /* Card surface on dark sections */
 
   /* ---- Text ---- */
   --color-ink: #1f1f24;           /* Charcoal */

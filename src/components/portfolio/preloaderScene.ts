@@ -5,12 +5,13 @@ import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPa
 import { OutputPass } from "three/examples/jsm/postprocessing/OutputPass.js";
 import { gridFragment, gridVertex } from "./preloaderShaders";
 import { createDust } from "./preloaderParticles";
+import { cappedDpr } from "@/lib/perf";
 
 const INK = 0x1f1f24;
 
 /** Water horizon, gold dust and bloom — rendered behind the preloader HUD. */
 export function createPreloaderScene(host: HTMLElement) {
-  const pixelRatio = Math.min(window.devicePixelRatio, 1.5);
+  const pixelRatio = cappedDpr(1.5);
   const renderer = new THREE.WebGLRenderer({ antialias: false, powerPreference: "high-performance" });
   renderer.setPixelRatio(pixelRatio);
   renderer.setClearColor(INK, 1);
@@ -73,12 +74,13 @@ export function createPreloaderScene(host: HTMLElement) {
   window.addEventListener("pointermove", onMove);
 
   const timer = new THREE.Timer();
-  let elapsed = 0;
+  // Page Visibility API: no giant delta when the tab comes back.
+  timer.connect(document);
   let raf = 0;
   const tick = (now?: number) => {
     timer.update(now);
     const dt = Math.min(timer.getDelta(), 0.05);
-    elapsed += dt;
+    const elapsed = timer.getElapsed();
     uniforms.uTime.value = elapsed;
     dust.uniforms.uTime.value = elapsed;
     dust.drift(dt);
