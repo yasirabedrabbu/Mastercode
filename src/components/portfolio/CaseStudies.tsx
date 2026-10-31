@@ -17,15 +17,15 @@ export default function CaseStudies() {
           <p className="max-w-sm text-ink-soft md:justify-self-end">Each project starts with a business goal and ends with a journey developers can build with confidence.</p>
         </div>
 
-        <p className="mt-6 max-w-2xl text-sm leading-relaxed text-ink-muted">
-          Client names and sensitive details are anonymized or omitted under NDA. Full walkthroughs are available on request.
-        </p>
-
-        <ul className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {work.map((item) => (
-            <WorkCard key={item.slug} item={item} />
+        <ul className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {work.map((item, i) => (
+            <WorkCard key={item.slug} item={item} index={i} />
           ))}
         </ul>
+
+        <p className="mt-8 border-t border-line pt-6 text-center text-sm leading-relaxed text-ink-muted">
+          Client names and sensitive details are anonymized or omitted under NDA. Full walkthroughs are available on request.
+        </p>
       </div>
     </section>
   );

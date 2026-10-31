@@ -7,7 +7,7 @@ import { Menu01Icon, Cancel01Icon } from "@hugeicons/core-free-icons";
 import { playClick } from "@/lib/clickSound";
 import { focus, focusOnDark } from "@/lib/ui";
 import { profile } from "@/data/cv";
-import { nav } from "@/data/site";
+import { navGroups } from "@/data/site";
 
 /** Puts page scrolling back and lets the pending hash jump through. */
 const release = () => {
@@ -73,26 +73,26 @@ export default function MobileNav() {
               open ? "opacity-100" : "pointer-events-none -translate-y-4 opacity-0"
             }`}
           >
-            <ul className="flex flex-col">
-              {nav.map(([label, href], i) => (
-                <li
-                  key={href}
-                  style={{ transitionDelay: open ? `${90 + i * 60}ms` : "0ms" }}
-                  className={`border-b border-white/10 transition-all duration-500 motion-reduce:transition-none ${
-                    open ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
-                  }`}
-                >
-                  <a
-                    href={href}
-                    onClick={close}
-                    className={`flex items-baseline justify-between py-5 font-display text-3xl font-bold tracking-tight ${focusOnDark}`}
-                  >
-                    {label}
-                    <span className="font-display text-xs font-bold tabular-nums text-on-brand/60">{String(i + 1).padStart(2, "0")}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <div className="flex flex-col gap-7">
+              {navGroups.map((group, gi) => {
+                const offset = navGroups.slice(0, gi).reduce((n, g) => n + g.links.length, 0);
+                return (
+                  <div key={group.category}>
+                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-on-brand/60">{group.category}</p>
+                    <ul className="mt-1 flex flex-col">
+                      {group.links.map(({ label, href }, li) => (
+                        <li key={href} style={{ transitionDelay: open ? `${90 + (offset + li) * 60}ms` : "0ms" }} className={`border-b border-white/10 transition-all duration-500 motion-reduce:transition-none ${open ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"}`}>
+                          <a href={href} onClick={close} className={`flex items-baseline justify-between py-4 font-display text-2xl font-bold tracking-tight ${focusOnDark}`}>
+                            {label}
+                            <span className="font-display text-xs font-bold tabular-nums text-on-brand/60">{String(offset + li + 1).padStart(2, "0")}</span>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                );
+              })}
+            </div>
             <a
               href={`mailto:${profile.email}`}
               onClick={close}
